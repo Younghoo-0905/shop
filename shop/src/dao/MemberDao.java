@@ -41,6 +41,8 @@ public class MemberDao {
 		stmt.executeQuery();
 		//	System.out.println("[insertMember stmt -->]" + stmt);	//	디버깅
 		
+		stmt.close();
+		conn.close();
 	}
 	
 	//	2. 로그인
@@ -63,8 +65,15 @@ public class MemberDao {
 			returnMember.setMemberId(rs.getString("memberId"));
 			returnMember.setMemberPw(rs.getString("memberPw"));			
 			returnMember.setMemberName(rs.getString("memberName"));
+			stmt.close();
+			conn.close();
+			rs.close();
 			return returnMember;
 		}
+		
+		stmt.close();
+		conn.close();
+		rs.close();
 		return null;
 	}
 }

@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 	<body>
 	
@@ -15,7 +16,7 @@
 		</div>
 		<!--  submenu include -->
 			  
-		<h1>메인페이지</h1>	
+		<h1>메인 페이지</h1>	
 		<%
 		if(session.getAttribute("loginMember") == null) {		
 		%>		
