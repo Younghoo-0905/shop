@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
 <!DOCTYPE html>
 <html>
@@ -10,11 +9,13 @@
 </head>
 	<body>
 	<div class="container">
-		<!--  submenu include  -->
+	
+		<!--  mainMenu include  -->
 		<div>
-			<jsp:include page="/partial/submenu.jsp"></jsp:include>
+			<jsp:include page="/partial/mainMenu.jsp"></jsp:include>
 		</div>
-		<!--  submenu include -->
+		<!--  mainMenu include -->
+		
 		<div class="jumbotron text-center">	  
 			<h1>메인 페이지</h1>	
 		</div>
@@ -32,8 +33,15 @@
 			<!--  로그인 후 -->		
 			<div><%=loginMember.getMemberName() %>님 반갑습니다.</div>
 			<a class="btn btn-dark" href="<%=request.getContextPath() %>/logout.jsp">로그아웃</a>
-			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectMemberOne.jsp">회원정보</a>
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectMemberOne.jsp">회원정보</a>	<br><br>		
+			
+			<!--  관리자 메뉴  -->
 		<%
+			if(loginMember.getMemberLevel() > 0) {		//	Level이 1 이상일 때만 출력
+		%>
+			<div><a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/adminIndex.jsp">관리자 메뉴</a></div>
+		<%	
+			}
 		}
 		%>	
 		</div>

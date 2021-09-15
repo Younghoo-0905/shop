@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dao.*" %>
 <%@ page import="vo.*" %>
 
@@ -29,6 +28,7 @@
 		//	리턴값 디버깅
 		System.out.println("[LoginId -->] " + returnMember.getMemberId());
 		System.out.println("[LoginName -->] " + returnMember.getMemberName());
+		System.out.println("[LoginLevel -->] " + returnMember.getMemberLevel());
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 	}
 	
