@@ -17,7 +17,7 @@
 	}		
 	%>
 	
-	<div class="container">
+	<div class="container-fluid">
 	
 		<!--  mainMenu include  -->
 		<div>

@@ -164,6 +164,7 @@ public class MemberDao {
 		return list;			
 	}
 	
+	
 	//	[관리자] LastPage 반환 메서드
 	public int selectLastPage(int rowPerPage, String searchMemberId) throws ClassNotFoundException, SQLException {
 		int lastPage = 0;
@@ -196,5 +197,93 @@ public class MemberDao {
 		stmt.close();
 		conn.close();
 		return lastPage;
+	}
+	
+	
+	//	[관리자] 회원 강제 삭제 메서드
+	//	입력값 : memberNo`
+	public void deleteMemberByAdmin(int memberNo) throws ClassNotFoundException, SQLException {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;	
+		String sql = "DELETE FROM member WHERE member_no=?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, memberNo);
+		//	stmt 디버깅
+		System.out.println("[deleteMemberByAdmin -> ]" + stmt);
+		stmt.executeQuery();
+		stmt.close();
+		conn.close();
+	}
+	
+	
+	//	[관리자] 회원 비밀번호 수정 메서드
+	//	입력값 : memberNo, 수정된 Pw
+	public void updateMemberPwByAdmin(Member member) throws SQLException, ClassNotFoundException {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;	
+		String sql = "UPDATE member SET member_pw=PASSWORD(?) WHERE member_no=?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberPw());
+		stmt.setInt(2, member.getMemberNo());
+		//	stmt 디버깅
+		//	System.out.println("[updateMemberPwByAdmin -> ]" + stmt);
+		int row = stmt.executeUpdate();
+		/*	디버깅 코드
+		if (row == 1) {
+			System.out.println("비밀번호가 수정되었습니다.");
+		}
+		*/
+		stmt.close();
+		conn.close();
+	}
+	
+	
+	//	[관리자]	회원 등급 수정
+	//	입력값 : memberNo, 수정된 Level
+	public void updateMemberLevelByAdmin(Member member) throws ClassNotFoundException, SQLException {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;	
+		String sql = "UPDATE member SET member_level=? WHERE member_no=?";
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, member.getMemberLevel());
+		stmt.setInt(2, member.getMemberNo());
+		//	stmt 디버깅
+		//	System.out.println("[updateMemberLevelByAdmin -> ]" + stmt);
+		stmt.executeQuery();
+		stmt.close();
+		conn.close();		
+	}
+	
+	
+	//	[관리자] 관리자 비밀번호 확인 메서드
+	//	관리자 비밀번호 입력받아서 일치하면 true 값 반환
+	public boolean compareAdminPw(Member member, String adminPw) throws ClassNotFoundException, SQLException {
+		boolean value = false;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;	
+		String sql = "SELECT member_no FROM member WHERE member_id=? AND member_pw=PASSWORD(?)";
+		stmt = conn.prepareStatement(sql);
+		stmt.setString(1, member.getMemberId());
+		stmt.setString(2, adminPw);
+		//	System.out.println("[compareAdminPw -> ]" + stmt);
+		ResultSet rs = stmt.executeQuery();				
+		if(rs.next()) {
+			value = true;
+		}		
+		stmt.close();
+		conn.close();		
+		return value;
 	}
 }

@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 	<body>
-	<div class="container">
+	<div class="container-fluid">
 	
 		<!--  mainMenu include  -->
 		<div>
@@ -31,7 +31,7 @@
 			Member loginMember = (Member)session.getAttribute("loginMember");
 		%>		
 			<!--  로그인 후 -->		
-			<div><%=loginMember.getMemberName() %>님 반갑습니다.</div>
+			<h4><span class="text-primary font-weight-bold"><%=loginMember.getMemberName() %> </span>님 반갑습니다.</h4>
 			<a class="btn btn-dark" href="<%=request.getContextPath() %>/logout.jsp">로그아웃</a>
 			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectMemberOne.jsp">회원정보</a>	<br><br>		
 			

@@ -23,7 +23,8 @@
 	if(request.getParameter("searchMemberId") != null) {
 		searchMemberId = request.getParameter("searchMemberId");
 	}
-	System.out.println("[검색 아이디] " + searchMemberId);
+	//	검색된 아이디 디버깅
+	//	System.out.println("[검색 아이디] " + searchMemberId);
 	
 	int pagingNum = ((currentPage-1) / 10);		//	페이지의 페이지 넘버 : 0부터 시작	
 	final int ROW_PER_PAGE = 10;	//	상수 : 10으로 초기화 되면 계속 10 값이 할당
@@ -48,7 +49,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 	<body>	
-	<div class="container">
+	<div class="container-fluid">
 			
 		<!--  adminMenu include  -->
 		<div>
@@ -59,7 +60,7 @@
 	<div class="jumbotron text-center">	  
 		<h1>회원 관리</h1>
 	</div>
-	<table class="table table-hover">
+	<table class="table table-hover text-center table-layout:fixed">
 		<thead>
 			<tr>
 				<th>회원 번호</th>
@@ -70,6 +71,9 @@
 				<th>성별</th>
 				<th>업데이트 날짜</th>
 				<th>가입 날짜</th>
+				<th>등급 수정</th>
+				<th>비밀번호 수정</th>
+				<th>회원 탈퇴</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -99,6 +103,18 @@
 					<td><%=m.getMemberGender() %></td>
 					<td><%=m.getUpdateDate() %></td>
 					<td><%=m.getCreateDate() %></td>
+					<td>
+						<!-- 회원 등급 수정 -->
+						<a href="<%=request.getContextPath() %>/admin/updateMemberLevelForm.jsp?memberNo=<%=m.getMemberNo() %>">등급 수정</a>
+					</td>
+					<td>
+						<!-- 회원 비밀번호 수정 -->
+						<a href="<%=request.getContextPath() %>/admin/updateMemberPwForm.jsp?memberNo=<%=m.getMemberNo() %>">비밀번호 수정</a>
+					</td>					
+					<td>
+						<!-- 회원 강제탈퇴 -->
+						<a href="<%=request.getContextPath() %>/admin/deleteMemberForm.jsp?memberNo=<%=m.getMemberNo() %>">회원 탈퇴</a>
+					</td>
 				</tr>
 		<%
 			}		
@@ -122,7 +138,7 @@
 		for(int i = 1; i<=10; i++) {	//	페이지 번호
 			if(i + (pagingNum * 10) == currentPage) {	//	currentPage인 링크버튼 파란색으로 표시
 	%>
-				<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+				<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
 	<%
 			} else {									//	currentPage 아닌 링크버튼
 	%>					

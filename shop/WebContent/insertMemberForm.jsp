@@ -17,7 +17,7 @@
 		return;
 	} else {				
 	%>
-	<div class="container">
+	<div class="container-fluid">
 	
 		<!--  mainMenu include  -->
 		<div>
@@ -31,7 +31,8 @@
 			<table>
 				<tr>
 					<td>회원 ID : </td>
-					<td><input type="text" name="memberId"></td>			
+					<td><input type="text" name="memberId"></td>
+					<td>			
 				</tr>
 				<tr>
 					<td>회원 PW : </td>

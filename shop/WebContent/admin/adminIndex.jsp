@@ -18,18 +18,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 	<body>
-	<div class="container">
+	<div class="container-fluid">
 	
-		<!--  adminMenu include  -->
+			<!--  adminMenu include  -->
 		<div>
 			<jsp:include page="/partial/adminMenu.jsp"></jsp:include>
 		</div>
-		<!--  adminMenu include -->
+			<!--  adminMenu include -->
 		
 		<div class="jumbotron text-center">	  
 			<h1>관리자 페이지</h1>
 		</div>
 		
-		<div class="d-flex justify-content-center"><%=loginMember.getMemberName() %> 님 반갑습니다.</div>
+		<h4 class="d-flex justify-content-center"><span class="text-primary font-weight-bold"><%=loginMember.getMemberName() %> </span> 님 반갑습니다.</h4>
 	</body>
 </html>
