@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import commons.DBUtil;
 import vo.Member;
 
@@ -14,7 +13,7 @@ public class MemberDao {
 	//	[비회원] 회원가입 메서드
 	public void insertMember(Member member) throws ClassNotFoundException, SQLException {
 		//	매개변수 값 디버깅
-		System.out.println("[MemberDao.insertMember memberId -->]" + member.getMemberId());
+		//	System.out.println("[MemberDao.insertMember memberId -->]" + member.getMemberId());
 		//	System.out.println("[MemberDao.insertMember memberPw -->]" + member.getMemberPw());
 		//	System.out.println("[MemberDao.insertMember memberLevel -->]" + member.getMemberLevel());
 		//	System.out.println("[MemberDao.insertMember memberName -->]" + member.getMemberName());
@@ -45,6 +44,29 @@ public class MemberDao {
 		stmt.close();
 		conn.close();
 	}
+	
+	
+	//	[회원가입]	 멤버 아이디 중복검사
+	//	null 값이 반환되면 사용 가능한 Id.
+	public String selectMemberId(String memberIdCheck) throws ClassNotFoundException, SQLException {		
+		String memberId = null;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "SELECT member_id memberId FROM member WHERE member_id=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, memberIdCheck);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			memberId = rs.getString("memberId");
+		}
+		rs.close();
+		stmt.close();
+		conn.close();		
+		return memberId;	//	null -> Id 사용가능
+	}
+	
 	
 	//	[회원] 로그인 메서드
 	//	로그인 성공 시 Member : memberId + memberName

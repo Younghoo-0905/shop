@@ -60,110 +60,112 @@
 	<div class="jumbotron text-center">	  
 		<h1>회원 관리</h1>
 	</div>
-	<table class="table table-hover text-center table-layout:fixed">
-		<thead>
-			<tr>
-				<th>회원 번호</th>
-				<th>회원 ID</th>
-				<th>등급</th>
-				<th>이름</th>
-				<th>나이</th>
-				<th>성별</th>
-				<th>업데이트 날짜</th>
-				<th>가입 날짜</th>
-				<th>등급 수정</th>
-				<th>비밀번호 수정</th>
-				<th>회원 탈퇴</th>
-			</tr>
-		</thead>
-		<tbody>
 	
-		<%
-			for(Member m : memberList) {
-		%>
+		<table class="table table-hover text-center table-layout:fixed">
+		
+			<!-- memberId로 검색 -->
+			<form action="<%=request.getContextPath() %>/admin/selectMemberList.jsp" method="get">
+				<span>회원 ID : </span>
+				<input type="text" name="searchMemberId">
+				<button class="btn btn-dark" type="submit">검색</button>		
+			</form>	
+			
+			<thead>
 				<tr>
-					<td><%=m.getMemberNo() %></td>
-					<td><%=m.getMemberId() %></td>
-					<!-- 회원의 등급 표시 -->
-					<td>
-						<%
-							if(m.getMemberLevel() == 0) {	//	Level이 0 이면 일반회원
-						%>
-								<span>일반 회원</span>
-						<%
-							} else if(m.getMemberLevel() == 1) {	//	Level이 1이면 관리자
-						%>
-								<span>관리자</span>
-						<%
-							}
-						%>
-					</td>
-					<td><%=m.getMemberName() %></td>
-					<td><%=m.getMemberAge() %></td>
-					<td><%=m.getMemberGender() %></td>
-					<td><%=m.getUpdateDate() %></td>
-					<td><%=m.getCreateDate() %></td>
-					<td>
-						<!-- 회원 등급 수정 -->
-						<a href="<%=request.getContextPath() %>/admin/updateMemberLevelForm.jsp?memberNo=<%=m.getMemberNo() %>">등급 수정</a>
-					</td>
-					<td>
-						<!-- 회원 비밀번호 수정 -->
-						<a href="<%=request.getContextPath() %>/admin/updateMemberPwForm.jsp?memberNo=<%=m.getMemberNo() %>">비밀번호 수정</a>
-					</td>					
-					<td>
-						<!-- 회원 강제탈퇴 -->
-						<a href="<%=request.getContextPath() %>/admin/deleteMemberForm.jsp?memberNo=<%=m.getMemberNo() %>">회원 탈퇴</a>
-					</td>
+					<th>회원 번호</th>
+					<th>회원 ID</th>
+					<th>등급</th>
+					<th>이름</th>
+					<th>나이</th>
+					<th>성별</th>
+					<th>업데이트 날짜</th>
+					<th>가입 날짜</th>
+					<th>등급 수정</th>
+					<th>비밀번호 수정</th>
+					<th>회원 탈퇴</th>
 				</tr>
+			</thead>
+			<tbody>
+		
+			<%
+				for(Member m : memberList) {
+			%>
+					<tr>
+						<td><%=m.getMemberNo() %></td>
+						<td><%=m.getMemberId() %></td>
+						<!-- 회원의 등급 표시 -->
+						<td>
+							<%
+								if(m.getMemberLevel() == 0) {	//	Level이 0 이면 일반회원
+							%>
+									<span>일반 회원</span>
+							<%
+								} else if(m.getMemberLevel() == 1) {	//	Level이 1이면 관리자
+							%>
+									<span>관리자</span>
+							<%
+								}
+							%>
+						</td>
+						<td><%=m.getMemberName() %></td>
+						<td><%=m.getMemberAge() %></td>
+						<td><%=m.getMemberGender() %></td>
+						<td><%=m.getUpdateDate() %></td>
+						<td><%=m.getCreateDate() %></td>
+						<td>
+							<!-- 회원 등급 수정 -->
+							<a href="<%=request.getContextPath() %>/admin/updateMemberLevelForm.jsp?memberNo=<%=m.getMemberNo() %>">등급 수정</a>
+						</td>
+						<td>
+							<!-- 회원 비밀번호 수정 -->
+							<a href="<%=request.getContextPath() %>/admin/updateMemberPwForm.jsp?memberNo=<%=m.getMemberNo() %>">비밀번호 수정</a>
+						</td>					
+						<td>
+							<!-- 회원 강제탈퇴 -->
+							<a href="<%=request.getContextPath() %>/admin/deleteMemberForm.jsp?memberNo=<%=m.getMemberNo() %>">회원 탈퇴</a>
+						</td>
+					</tr>
+			<%
+				}		
+			%>		
+			</tbody>	
+		</table>
+	
+		<!-- 페이징 -->
+		
+		<div class="d-flex justify-content-center">
+			<ul class =	"pagination active">
+		<%		
+			//	lastPage를 구하는 메서드 사용
+			int lastPage = memberDao.selectLastPage(ROW_PER_PAGE, searchMemberId);
+			if(pagingNum > 0) {		//	'이전' 버튼
+		%>			
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=(pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>">이전</a></li>
 		<%
-			}		
-		%>		
-		</tbody>	
-	</table>
-	
-	<!-- 페이징 -->
-	
-	<div class="d-flex justify-content-center">
-		<ul class =	"pagination active">
-	<%		
-		//	lastPage를 구하는 메서드 사용
-		int lastPage = memberDao.selectLastPage(ROW_PER_PAGE, searchMemberId);
-		if(pagingNum > 0) {		//	'이전' 버튼
-	%>			
-			<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=(pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>">이전</a></li>
-	<%
-		}				
-	
-		for(int i = 1; i<=10; i++) {	//	페이지 번호
-			if(i + (pagingNum * 10) == currentPage) {	//	currentPage인 링크버튼 파란색으로 표시
-	%>
-				<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
-	<%
-			} else {									//	currentPage 아닌 링크버튼
-	%>					
-				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
-	<%
+			}				
+		
+			for(int i = 1; i<=10; i++) {	//	페이지 번호
+				if(i + (pagingNum * 10) == currentPage) {	//	currentPage인 링크버튼 파란색으로 표시
+		%>
+					<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+		<%
+				} else {									//	currentPage 아닌 링크버튼
+		%>					
+					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+		<%
+				}
+				if((i + (pagingNum * 10)) == lastPage) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
+					break;
+				}
 			}
-			if((i + (pagingNum * 10)) == lastPage) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
-				break;
+			if(pagingNum < ((lastPage-1) / ROW_PER_PAGE)) {	//	'다음' 버튼
+		%>
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=(pagingNum * 10) + 11 %>&searchMemberId=<%=searchMemberId %>">다음</a></li>					
+		<%
 			}
-		}
-		if(pagingNum < ((lastPage-1) / ROW_PER_PAGE)) {	//	'다음' 버튼
-	%>
-			<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=(pagingNum * 10) + 11 %>&searchMemberId=<%=searchMemberId %>">다음</a></li>					
-	<%
-		}
-	%>							
-		</ul>	
-	</div>
-	
-	<!-- memberId로 검색 -->
-		<form action="<%=request.getContextPath() %>/admin/selectMemberList.jsp" method="get">
-			<span>회원 ID : </span>
-			<input type="text" name="searchMemberId">
-			<button class="btn btn-dark" type="submit">검색</button>		
-		</form>	
+		%>							
+			</ul>	
+		</div>
 	</div>
 	</body>
 </html>
