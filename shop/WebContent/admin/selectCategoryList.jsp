@@ -15,7 +15,6 @@
 	//	CategoryDao 객체생성
 	CategoryDao categoryDao = new CategoryDao();	
 	ArrayList<Category> categoryList = categoryDao.selectCategoryList();
-
 %>
 
 <!DOCTYPE html>
@@ -35,7 +34,7 @@
 		<!--  adminMenu include -->
 		
 	<div class="jumbotron text-center">	  
-		<h1>전자책 관리</h1>
+		<h1>전자책 카테고리 관리</h1>
 	</div>
 	<table class="table table-hover text-center table-layout:fixed">
 	

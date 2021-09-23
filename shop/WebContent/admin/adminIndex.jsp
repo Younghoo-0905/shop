@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>    
 <%
+	request.setCharacterEncoding("UTF-8");
+
 	//	관리자 페이지 접근 방어코드
 	Member loginMember = (Member)session.getAttribute("loginMember");
 	if(loginMember == null || loginMember.getMemberLevel() < 1){	//	로그인 전이거나 memberLevel이 0이면
@@ -20,11 +22,11 @@
 	<body>
 	<div class="container-fluid">
 	
-			<!--  adminMenu include  -->
+		<!--  adminMenu include  -->
 		<div>
 			<jsp:include page="/partial/adminMenu.jsp"></jsp:include>
 		</div>
-			<!--  adminMenu include -->
+		<!--  adminMenu include -->
 		
 		<div class="jumbotron text-center">	  
 			<h1>관리자 페이지</h1>
