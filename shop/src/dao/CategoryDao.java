@@ -100,7 +100,7 @@ public class CategoryDao {
 			stmt.setString(1, "Y");
 		}
 		stmt.setString(2, category.getCategoryName());
-		System.out.println("[CategoryDao.updateCategoryState ->]" + stmt);
+		//	System.out.println("[CategoryDao.updateCategoryState ->]" + stmt);
 		stmt.executeUpdate();
 		
 		stmt.close();

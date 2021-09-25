@@ -20,6 +20,7 @@
 	<head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 	</head>
 	<body>
 	
@@ -30,7 +31,10 @@
 	<!--  adminMenu include -->
 	
 	<div class="jumbotron text-center">	  
-		<h1>전자책 이미지 수정</h1>
+		<h1>
+			<div>[전자책 관리]</div>
+			<div>전자책 이미지 수정</div>
+		</h1>
 	</div>
 	
 	<form action="<%=request.getContextPath() %>/admin/updateEbookImgAction.jsp" method="post" enctype="multipart/form-data">
@@ -41,6 +45,7 @@
 		<input type="file" name="ebookImg">
 		
 	  	<button type="submit">이미지파일 수정</button>
+	  	<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectEbookOne.jsp?ebookNo=<%=ebookNo %>">돌아가기</a>	
 	
 	</form>	
 	</body>

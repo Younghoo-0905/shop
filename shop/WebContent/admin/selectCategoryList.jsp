@@ -33,39 +33,41 @@
 		</div>
 		<!--  adminMenu include -->
 		
-	<div class="jumbotron text-center">	  
-		<h1>전자책 카테고리 관리</h1>
-	</div>
-	<table class="table table-hover text-center table-layout:fixed">
+		<div class="jumbotron text-center">	  
+			<h1>전자책 카테고리 관리</h1>
+		</div>
 	
-		<!-- Category 추가 버튼 -->
+		<table class="table table-hover text-center table-layout:fixed">
+		
+			<!-- Category 추가 버튼 -->
+						
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/insertCategoryForm.jsp">카테고리 추가</a>		
 					
-		<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/insertCategoryForm.jsp">카테고리 추가</button>		
-				
-		<thead>
-			<tr>
-				<th>전자책 이름</th>		
-				<th>사용 여부</th>		
-				<th>업데이트 날짜</th>
-				<th>생성 날짜</th>
-			</tr>
-		</thead>
-		<tbody>
-	
-		<%
-			for(Category c : categoryList) {
-		%>
+			<thead>
 				<tr>
-					<td><%=c.getCategoryName() %></td>
-						<!-- 클릭 시 사용유무 변경 -->
-					<td><a href="<%=request.getContextPath() %>/admin/updateCategoryStateAction.jsp?categoryState=<%=c.getCategoryState() %>&categoryName=<%=c.getCategoryName() %>"><%=c.getCategoryState() %></a></td>
-					<td><%=c.getUpdateDate() %></td>
-					<td><%=c.getCreateDate() %></td>
+					<th>전자책 이름</th>		
+					<th>사용 여부</th>		
+					<th>업데이트 날짜</th>
+					<th>생성 날짜</th>
 				</tr>
-		<%
-			}		
-		%>		
-		</tbody>	
-	</table>	
+			</thead>
+			<tbody>
+		
+			<%
+				for(Category c : categoryList) {
+			%>
+					<tr>
+						<td><%=c.getCategoryName() %></td>
+							<!-- 클릭 시 사용유무 변경 -->
+						<td><a href="<%=request.getContextPath() %>/admin/updateCategoryStateAction.jsp?categoryState=<%=c.getCategoryState() %>&categoryName=<%=c.getCategoryName() %>"><%=c.getCategoryState() %></a></td>
+						<td><%=c.getUpdateDate() %></td>
+						<td><%=c.getCreateDate() %></td>
+					</tr>
+			<%
+				}		
+			%>		
+			</tbody>	
+		</table>	
+	</div>
 	</body>
 </html>

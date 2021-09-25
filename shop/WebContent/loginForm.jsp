@@ -25,7 +25,10 @@
 		</div>
 		<!--  mainMenu include -->
 	
-		<div class="jumbotron text-center"><h1>로그인</h1></div>
+		<div class="jumbotron text-center">
+			<h1>로그인</h1>
+		</div>
+		
 		<form class="text-center" method="post" action="<%=request.getContextPath() %>/loginAction.jsp">
 		
 			<div>회원 ID : </div>

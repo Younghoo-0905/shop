@@ -59,6 +59,7 @@
 		<form action="<%=request.getContextPath() %>/admin/selectEbookList.jsp">
 		
 			<select name="categoryName">
+					<option value="all">전체</option>
 				<%
 					for(Category c : categoryList) {
 				%>
@@ -74,7 +75,7 @@
 		
 		<%			
 			ArrayList<Ebook> ebookList = new ArrayList<>();		
-			if(categoryName.equals("")) {	//	categoryName 값이 공백이면 전체 목록 출력 메서드 실행
+			if(categoryName.equals("") || categoryName.equals("all")) {	//	categoryName 값이 공백 또는 all 이면 전체 목록 출력 메서드 실행
 				ebookList = ebookDao.selectEbookList(beginRow, ROW_PER_PAGE);	
 			} else {						//	categoryName 값이 존재하면 categoryName별 목록 출력 메서드 실행
 				ebookList = ebookDao.selectEbookListByCategory(beginRow, ROW_PER_PAGE, categoryName);		

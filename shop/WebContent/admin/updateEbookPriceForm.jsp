@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>    
 <%@ page import="dao.*" %>
-<%@ page import="java.util.*" %>
-
 <%
 	request.setCharacterEncoding("UTF-8");
 	
@@ -41,37 +39,22 @@
 		<div class="jumbotron text-center">	  
 			<h1>
 				<div>[전자책 관리]</div>
-				<div>전자책 정보</div>
+				<div>전자책 가격 수정</div>
 			</h1>
 		</div>		
 		
-		<table class="table text-center table-layout:fixed">
-			<thead>
-				<tr>
-					<td><%=ebook.getEbookNo() %></td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<img src="<%=request.getContextPath() %>/image/<%=ebook.getEbookImg() %>">
-						<br>
-						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/updateEbookImg.jsp?ebookNo=<%=ebookNo %>">이미지수정</a>
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<div>가격 : ₩ <%=ebook.getEbookPrice() %></div>
-						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/updateEbookPriceForm.jsp?ebookNo=<%=ebookNo %>">가격 수정</a>
-					</td>	
-				</tr>
-				<tr>	
-					<td>
-						<a class="btn btn-dark" href="">삭제</a>	
-					</td>	
-				</tr>
-			</tbody>
-		</table>
+		<form class="text-center" method="post" action="<%=request.getContextPath() %>/admin/updateEbookPriceAction.jsp">
+		
+			<div>전자책 No : </div>
+			<div><input type="text" name="ebookNo" value="<%=ebookNo %>" readonly="readonly"></div>
+			<div>가격 : </div>
+			<div><input type="text" name="ebookPrice"></div>
+			
+			<br>		
+		
+			<button type="submit" class="btn btn-dark">수정</button>	
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectEbookOne.jsp?ebookNo=<%=ebookNo %>">돌아가기</a>			
+		</form>
 	</div>
 	</body>
 </html>

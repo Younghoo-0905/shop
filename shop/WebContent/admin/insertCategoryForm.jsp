@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
-<!DOCTYPE html>
-<html>
-	<head>
-	<meta charset="UTF-8">
-	<title>Insert title here</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-	</head>
-	<body>
-	<%
+<%
 	request.setCharacterEncoding("UTF-8");
 	
 	//	관리자 페이지 접근 방어코드
@@ -17,7 +9,15 @@
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}				
-	%>
+%>
+<!DOCTYPE html>
+<html>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	</head>
+	<body>
 	<div class="container-fluid">
 			
 		<!--  adminMenu include  -->
@@ -26,12 +26,12 @@
 		</div>
 		<!--  adminMenu include -->
 		
-	<div class="jumbotron text-center">	  
-		<h1>
-			<div>[관리자페이지]</div>
-			<div>전자책 카테고리 추가</div>
-		</h1>		
-	</div>
+		<div class="jumbotron text-center">	  
+			<h1>
+				<div>[전자책 카테고리 관리]</div>
+				<div>카테고리 추가</div>
+			</h1>		
+		</div>
 	
 		<%
 			//	중복 체크가 완료된 카테고리명 변수
@@ -84,5 +84,6 @@
 				<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectCategoryList.jsp">돌아가기</a>		
 			</form>
 		</div>	
+	</div>
 	</body>
 </html>

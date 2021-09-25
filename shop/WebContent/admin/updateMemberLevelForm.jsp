@@ -39,7 +39,7 @@
 		
 			<div class="jumbotron text-center">	  
 				<h1>
-					<div>[관리자페이지]</div>
+					<div>[회원 관리]</div>
 					<div>회원 등급 수정</div>
 				</h1>
 			</div>

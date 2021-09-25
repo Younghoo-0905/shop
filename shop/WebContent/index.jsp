@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>
+<%@ page import="dao.*" %>
+<%@ page import="java.util.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,6 +47,49 @@
 		}
 		%>	
 		</div>
+		<!-- 상품 목록 -->
+		<%
+		
+			//	페이징 관련 변수
+			
+			int currentPage = 1;	//	currentPage 초기화
+			if(request.getParameter("currentPage") != null) {	//	currentPage 값이 넘어왔으면
+				currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			}
+			//	System.out.println("[현재 페이지] " + currentPage);
+			
+			int pagingNum = ((currentPage-1) / 10);		//	페이지의 페이지 넘버 : 0부터 시작	
+			final int ROW_PER_PAGE = 20;	//	상수 : 10으로 초기화 되면 계속 10 값이 할당
+			int beginRow = (currentPage-1) * ROW_PER_PAGE;	//	출력을 시작할 행 넘버
+			
+			
+			EbookDao ebookDao = new EbookDao();
+			ArrayList<Ebook> ebookList = ebookDao.selectEbookList(beginRow, ROW_PER_PAGE);		
+		%>
+		<br>
+		<table class="table table-hover text-center table-layout:fixed">			
+			<tr>
+		<%
+			int i = 0;
+			for(Ebook e : ebookList) {
+		%>
+					<td>
+						<div><img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200"></div>
+						<div><%=e.getEbookTitle() %></div>	
+						<div>₩ <%=e.getEbookPrice() %></div>
+					</td>		
+		<%
+				i++;
+				if(i%5 == 0) {
+		%>
+				</tr>
+				<tr>
+		<%					
+				}
+			}		
+		%>		
+			</tr>
+		</table>
 	</div>
 	</body>
 </html>
