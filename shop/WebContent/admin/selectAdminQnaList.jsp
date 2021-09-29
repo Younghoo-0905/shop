@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="vo.*" %>    
+<%@ page import="vo.*" %>
 <%@ page import="dao.*" %>
 <%@ page import="java.util.*" %>
 <%
@@ -13,11 +13,8 @@
 		return;
 	}
 	
-	Qna qna = new Qna();
 	QnaDao qnaDao = new QnaDao();
-	
-	//	답변 내용이 아직 없는 QnA 게시글 목록 불러오기
-	ArrayList<Qna> qnaList = qnaDao.selectNotCommentQnaList();
+	ArrayList<Qna> list = qnaDao.selectQnaList();
 %>
 
 <!DOCTYPE html>
@@ -28,23 +25,17 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 	<body>
-	<div class="container-fluid">	
-		
+	<div class="container-fluid">
+	
 		<!--  adminMenu include  -->
 		<div>
 			<jsp:include page="/partial/adminMenu.jsp"></jsp:include>
 		</div>
 		<!--  adminMenu include -->
 		
-		<h4 class="d-flex justify-content-center"><span class="text-primary font-weight-bold"><%=loginMember.getMemberName() %> </span> 님 반갑습니다.</h4>
-				
 		<div class="jumbotron text-center">	  
-			<h1>관리자 페이지</h1>
+			<h1>QnA 게시판 관리</h1>
 		</div>		
-		
-		<!-- 아직 답변하지 않은 QnA 게시글 목록 메인화면에 출력 -->
-		
-		<h2 class="text-center">아직 답변하지 않은 QnA 게시글이 있습니다.</h2>
 		
 		<table class="table table-hover text-center table-layout:fixed">		
 		
@@ -59,7 +50,7 @@
 			</thead>
 			<tbody>
 			<%
-				for(Qna q : qnaList) {
+				for(Qna q : list) {
 			%>
 					<tr>
 						<td><%=q.getQnaNo() %></td>
@@ -84,6 +75,7 @@
 				}		
 			%>					
 			</tbody>	
-		</table>				
+		</table>		
+	</div>
 	</body>
 </html>

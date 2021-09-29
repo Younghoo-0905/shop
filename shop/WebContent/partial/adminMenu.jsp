@@ -11,7 +11,7 @@
 			<!-- 주문 관리 : 목록,  -->
 		<li><a href="<%=request.getContextPath() %>/admin/selectOrderList.jsp">[주문 관리]</a></li>
 		<li><a href="<%=request.getContextPath() %>/admin/">[상품평 관리]</a></li>
-		<li><a href="<%=request.getContextPath() %>/admin/">[공지게시판 관리]</a></li>
-		<li><a href="<%=request.getContextPath() %>/admin/">[QnA게시판 관리]</a></li>
+		<li><a href="<%=request.getContextPath() %>/admin/selectAdminNoticeList.jsp">[공지 게시판 관리]</a></li>
+		<li><a href="<%=request.getContextPath() %>/admin/selectAdminQnaList.jsp">[QnA게시판 관리]</a></li>
 	</ul>
 </div>

@@ -30,6 +30,7 @@
 	</head>
 	<body>
 	<div class="container-fluid">
+	
 		<!--  mainMenu include  -->
 		<div>
 			<jsp:include page="/partial/mainMenu.jsp"></jsp:include>

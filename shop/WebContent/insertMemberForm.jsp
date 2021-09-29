@@ -64,8 +64,7 @@
 				<table>
 					<tr>
 						<td>회원 ID : </td>
-						<td><input id="memberId" type="text" name="memberId" readonly="readonly" value="<%=memberIdCheck %>"></td>
-						<td>			
+						<td><input id="memberId" type="text" name="memberId" readonly="readonly" value="<%=memberIdCheck %>"></td>								
 					</tr>
 					<tr>
 						<td>회원 PW : </td>
