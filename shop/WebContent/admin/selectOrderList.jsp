@@ -18,6 +18,12 @@
 	}
 	//	System.out.println("[현재 페이지] " + currentPage);
 	
+	//	검색어
+	String searchMemberId = "";
+	if(request.getParameter("searchMemberId") != null) {
+		searchMemberId = request.getParameter("searchMemberId");
+	}
+	
 	int pagingNum = ((currentPage-1) / 10);		//	페이지의 페이지 넘버 : 0부터 시작	
 	final int ROW_PER_PAGE = 10;	//	상수 : 10으로 초기화 되면 계속 10 값이 할당
 	int beginRow = (currentPage-1) * ROW_PER_PAGE;	//	출력을 시작할 행 넘버
@@ -45,7 +51,15 @@
 		<h1>주문 관리</h1>
 	</div>
 	
-		<table class="table table-hover text-center table-layout:fixed">			
+		<table class="table table-hover text-center table-layout:fixed">	
+		
+			<!-- memberId로 검색 -->
+			<form action="<%=request.getContextPath() %>/admin/selectOrderList.jsp" method="get">
+				<span>회원 ID : </span>
+				<input type="text" name="searchMemberId">
+				<button class="btn btn-dark" type="submit">검색</button>		
+			</form>			
+			
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -73,6 +87,40 @@
 		</table>
 		
 		<!-- 페이징 구현 -->
+		
+		<div class="d-flex justify-content-center">
+			<ul class =	"pagination active">
+		<%		
+			//	lastPage를 구하는 메서드 사용
+			int lastPage = orderDao.selectOrderLastPage(ROW_PER_PAGE, searchMemberId);
+			if(pagingNum > 0) {		//	'이전' 버튼
+		%>			
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>">이전</a></li>
+		<%
+			}				
+		
+			for(int i = 1; i<=10; i++) {	//	페이지 번호
+				if(i + (pagingNum * 10) == currentPage) {	//	currentPage인 링크버튼 파란색으로 표시
+		%>
+					<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+		<%
+				} else {									//	currentPage 아닌 링크버튼
+		%>					
+					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+		<%
+				}
+				if((i + (pagingNum * 10)) == lastPage) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
+					break;
+				}
+			}
+			if(pagingNum < ((lastPage-1) / ROW_PER_PAGE)) {	//	'다음' 버튼
+		%>
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) + 11 %>&searchMemberId=<%=searchMemberId %>">다음</a></li>					
+		<%
+			}
+		%>							
+			</ul>	
+		</div>		
 		
 	
 	</body>

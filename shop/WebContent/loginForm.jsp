@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 	<body>
 	
@@ -29,17 +30,33 @@
 			<h1>로그인</h1>
 		</div>
 		
-		<form class="text-center" method="post" action="<%=request.getContextPath() %>/loginAction.jsp">
+		<form id="loginForm" class="text-center" method="post" action="<%=request.getContextPath() %>/loginAction.jsp">
 		
 			<div>회원 ID : </div>
-			<div><input type="text" name="memberId"></div>
+			<div><input id="memberId" type="text" name="memberId" value=""></div>
 			<div>회원 PW : </div>
-			<div><input type="password" name="memberPw"></div><br>
+			<div><input id="memberPw" type="password" name="memberPw" value=""></div><br>
 			
-			<button class="btn btn-dark" type="submit">로그인</button>
+			<button id="loginBtn" class="btn btn-dark" type="button">로그인</button>
 			<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>	
 		
 		</form>
+		
+		<script>
+			$('#loginBtn').click(function() {
+				//	로그인 버튼 click -> 유효성 검사
+				if($('#memberId').val() == '') {
+					alert('memberId를 입력하세요');
+					return;
+				} else if($('#memberPw').val() == '') {
+					alert('memberPw를 입력하세요');
+					return;
+				} else {
+					$('#loginForm').submit();
+				}
+				
+			});		
+		</script>
 	</div>
 	</body>
 </html>

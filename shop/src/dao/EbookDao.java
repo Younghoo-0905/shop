@@ -46,6 +46,67 @@ public class EbookDao {
 			return list;
 		}
 		
+		
+		//	최신 ebookList 출력 메서드
+		public ArrayList<Ebook> selectRecentEbookList() throws ClassNotFoundException, SQLException {
+			ArrayList<Ebook> list = new ArrayList<>();
+			
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql = "SELECT ebook_no ebookNo, ebook_title ebookTitle, ebook_img ebookImg, ebook_price ebookPrice "
+					+ "FROM ebook "
+					+ "ORDER BY create_date DESC "
+					+ "LIMIT 0, 5";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			//	System.out.println("[EbookDao.selectRecentEbookList -> ]" + stmt);	//	stmt 디버깅
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Ebook e = new Ebook();
+				e.setEbookNo(rs.getInt("ebookNo"));
+				e.setEbookTitle(rs.getString("ebookTitle"));
+				e.setEbookImg(rs.getString("ebookImg"));
+				e.setEbookPrice(rs.getInt("ebookPrice"));
+				list.add(e);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();				
+			return list;
+		}
+		
+		
+		//	인기 ebookList 출력 메서드
+		public ArrayList<Ebook> selectPopularEbookList() throws ClassNotFoundException, SQLException {
+			ArrayList<Ebook> list = new ArrayList<>();
+			
+			DBUtil dbUtil = new DBUtil();
+			Connection conn = dbUtil.getConnection();
+			String sql = "SELECT e.ebook_no ebookNo, e.ebook_title ebookTitle, e.ebook_img ebookImg, e.ebook_price ebookPrice "
+					+ "FROM ebook e INNER JOIN "
+					+ "(SELECT ebook_no, COUNT(ebook_no) count "
+					+ "FROM orders "
+					+ "GROUP BY ebook_no "
+					+ "ORDER BY COUNT(ebook_no) DESC "
+					+ "LIMIT 0, 5) t "
+					+ "ON e.ebook_no = t.ebook_no";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			//	System.out.println("[EbookDao.selectPopularEbookList -> ]" + stmt);	//	stmt 디버깅
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Ebook e = new Ebook();
+				e.setEbookNo(rs.getInt("ebookNo"));
+				e.setEbookTitle(rs.getString("ebookTitle"));
+				e.setEbookImg(rs.getString("ebookImg"));
+				e.setEbookPrice(rs.getInt("ebookPrice"));
+				list.add(e);
+			}
+			rs.close();
+			stmt.close();
+			conn.close();				
+			return list;
+		}
+		
+		
 		//	[관리자] ebook 카테고리별 목록
 		public ArrayList<Ebook> selectEbookListByCategory(int beginRow, int rowPerPage, String categoryName) throws ClassNotFoundException, SQLException {
 			ArrayList<Ebook> list = new ArrayList<>();
@@ -122,13 +183,14 @@ public class EbookDao {
 			Connection conn = dbUtil.getConnection();
 			
 			PreparedStatement stmt;		
-			String sql = "SELECT ebook_no ebookNo, ebook_img ebookImg, ebook_price ebookPrice FROM ebook WHERE ebook_no=?";
+			String sql = "SELECT ebook_no ebookNo, ebook_title ebookTitle, ebook_img ebookImg, ebook_price ebookPrice FROM ebook WHERE ebook_no=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, ebookNo);
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next()) {
 				ebook = new Ebook();
 				ebook.setEbookNo(rs.getInt("ebookNo"));
+				ebook.setEbookTitle(rs.getString("ebookTitle"));
 				ebook.setEbookImg(rs.getString("ebookImg"));
 				ebook.setEbookPrice(rs.getInt("ebookPrice"));
 			}
@@ -140,20 +202,20 @@ public class EbookDao {
 		
 		
 		//	[관리자] ebook 이미지 수정 메서드
-		   public void updateEbookImg(Ebook ebook) throws ClassNotFoundException, SQLException {
-			   
-		      DBUtil dbUtil = new DBUtil();
-		      Connection conn = dbUtil.getConnection();
-		      
-		      String sql = "UPDATE ebook SET ebook_img=? WHERE ebook_no=?";
-		      PreparedStatement stmt = conn.prepareStatement(sql);
-		      stmt.setString(1, ebook.getEbookImg());
-		      stmt.setInt(2, ebook.getEbookNo());
-		      //	System.out.println("[updateEbookImg -> ]" + stmt);
-		      stmt.executeUpdate();
-		      stmt.close();
-		      conn.close();
-		   }
+	   public void updateEbookImg(Ebook ebook) throws ClassNotFoundException, SQLException {
+		   
+	      DBUtil dbUtil = new DBUtil();
+	      Connection conn = dbUtil.getConnection();
+	      
+	      String sql = "UPDATE ebook SET ebook_img=? WHERE ebook_no=?";
+	      PreparedStatement stmt = conn.prepareStatement(sql);
+	      stmt.setString(1, ebook.getEbookImg());
+	      stmt.setInt(2, ebook.getEbookNo());
+	      //	System.out.println("[updateEbookImg -> ]" + stmt);
+	      stmt.executeUpdate();
+	      stmt.close();
+	      conn.close();
+	   }
 	
 		   
 		//	[관리자] ebook 가격 수정 메서드

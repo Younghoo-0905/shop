@@ -18,9 +18,6 @@
 		</div>
 		<!--  mainMenu include -->
 		
-		<div class="jumbotron text-center">	  
-			<h1>메인 페이지</h1>	
-		</div>
 		<div class="text-center">
 		<%
 		if(session.getAttribute("loginMember") == null) {		
@@ -35,7 +32,9 @@
 			<!--  로그인 후 -->		
 			<h4><span class="text-primary font-weight-bold"><%=loginMember.getMemberName() %> </span>님 반갑습니다.</h4>
 			<a class="btn btn-dark" href="<%=request.getContextPath() %>/logout.jsp">로그아웃</a>
-			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectMemberOne.jsp">회원정보</a>	<br><br>		
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectMemberOne.jsp">회원정보</a>
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectOrderListByMember.jsp">나의 주문</a>		
+			<br><br>		
 			
 			<!--  관리자 메뉴  -->
 		<%
@@ -47,6 +46,13 @@
 		}
 		%>	
 		</div>
+		
+		<br>
+		
+		<div class="jumbotron text-center">	  
+			<h1>메인 페이지</h1>	
+		</div>
+
 		<!-- 상품 목록 -->
 		<%
 		
@@ -64,9 +70,68 @@
 			
 			
 			EbookDao ebookDao = new EbookDao();
-			ArrayList<Ebook> ebookList = ebookDao.selectEbookList(beginRow, ROW_PER_PAGE);		
+			ArrayList<Ebook> ebookList = ebookDao.selectEbookList(beginRow, ROW_PER_PAGE);	
+			ArrayList<Ebook> popularEbookList = ebookDao.selectPopularEbookList();
+			ArrayList<Ebook> recentEbookList = ebookDao.selectRecentEbookList();
 		%>
 		<br>
+		<div class="text-center">
+			<h2>인기 상품목록</h2>
+		</div>
+		<table class="table table-hover text-center table-layout:fixed">
+			<tr>
+		<%			
+			for(Ebook e : popularEbookList) {
+		%>			
+				<td>
+					<div>
+						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+						</a>
+					</div>
+					<div>
+						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+						<%=e.getEbookTitle() %>					
+						</a>
+					</div>	
+					<div>₩ <%=e.getEbookPrice() %></div>
+				</td>			
+		<%									
+			}		
+		%>		
+			</tr>
+		</table>
+		
+		<div class="text-center">
+			<h2>최신 상품목록</h2>
+		</div>
+		<table class="table table-hover text-center table-layout:fixed">
+			<tr>
+		<%			
+			for(Ebook e : recentEbookList) {
+		%>			
+				<td>
+					<div>
+						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+						</a>
+					</div>
+					<div>
+						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+						<%=e.getEbookTitle() %>
+						</a>
+					</div>	
+					<div>₩ <%=e.getEbookPrice() %></div>
+				</td>			
+		<%									
+			}		
+		%>		
+			</tr>
+		</table>
+		
+		<div class="text-center">
+			<h2>전체 상품목록</h2>
+		</div>
 		<table class="table table-hover text-center table-layout:fixed">			
 			<tr>
 		<%
@@ -74,8 +139,16 @@
 			for(Ebook e : ebookList) {
 		%>
 					<td>
-						<div><img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200"></div>
-						<div><%=e.getEbookTitle() %></div>	
+						<div>
+							<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+							<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+							</a>
+						</div>
+						<div>
+							<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
+							<%=e.getEbookTitle() %>
+							</a>
+						</div>	
 						<div>₩ <%=e.getEbookPrice() %></div>
 					</td>		
 		<%

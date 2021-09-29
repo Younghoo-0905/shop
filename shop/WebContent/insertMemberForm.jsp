@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 	<body>	
 	<%
@@ -59,40 +60,69 @@
 		</div>
 		<div class="d-flex justify-content-center">
 			
-			<form class="text-center" method="post" action="<%=request.getContextPath() %>/insertMemberAction.jsp">			
+			<form id="joinForm" class="text-center" method="post" action="<%=request.getContextPath() %>/insertMemberAction.jsp">			
 				<table>
 					<tr>
 						<td>회원 ID : </td>
-						<td><input type="text" id="memberId" name="memberId" readonly="readonly" value="<%=memberIdCheck %>"></td>
+						<td><input id="memberId" type="text" name="memberId" readonly="readonly" value="<%=memberIdCheck %>"></td>
 						<td>			
 					</tr>
 					<tr>
 						<td>회원 PW : </td>
-						<td><input type="password" name="memberPw"></td>
+						<td><input id="memberPw" type="password" name="memberPw"></td>
 					</tr>
 					<tr>
 						<td>회원 PW 확인 : </td>
-						<td><input type="password" name="memberPwRe"></td>
+						<td><input id="memberPwRe" type="password" name="memberPwRe"></td>
 					</tr>
 					<tr>
 						<td>회원 이름 : </td>
-						<td><input type="text" name="memberName"></td>
+						<td><input id="memberName" type="text" name="memberName"></td>
 					</tr>
 					<tr>
 						<td>나이 : </td>
-						<td><input type="text" name="memberAge"></td>
+						<td><input id="memberAge" type="text" name="memberAge"></td>
 					</tr>
 					<tr>
 						<td>성별 : </td>
 						<td>
-							<input type="radio" name="memberGender" value="남">남
-							<input type="radio" name="memberGender" value="여">여
+							<input id="memberGender" type="radio" name="memberGender" value="남">남
+							<input id="memberGender" type="radio" name="memberGender" value="여">여
 						</td>
 					</tr>
 				</table><br>				
-				<button class="btn btn-dark" type="submit">회원 가입</button>	
+				<button id="btn" class="btn btn-dark" type="button">회원 가입</button>	
 				<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>			
 			</form>
 		</div>
+		
+		<script>
+			$('#btn').click(function() {
+				
+				if($('#memberId').val() == '') {
+					alert('memberId를 입력하세요');
+					return;
+				} else if($('#memberPw').val() == '') {
+					alert('memberPw를 입력하세요');
+					return;
+				} else if($('#memberPwRe').val() == '') {
+					alert('memberPw를 입력하세요');
+					return;
+				} else if($('#memberName').val() == '') {
+					alert('memberName을 입력하세요');
+					return;
+				} else if($('#memberAge').val() == '') {
+					alert('memberAge를 입력하세요');
+					return;
+				} else if($('#memberGender:checked').length == 0) {
+					alert('memberGender를 선택하세요');
+					return;
+				} else {
+					$('#joinForm').submit();	
+				}				
+			})		
+		
+		
+		</script>
 	</body>
 </html>

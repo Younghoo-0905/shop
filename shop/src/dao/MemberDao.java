@@ -77,7 +77,8 @@ public class MemberDao {
 		
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
-		String sql = "SELECT member_id memberId, "
+		String sql = "SELECT member_no memberNo, "
+				+ "member_id memberId, "
 				+ "member_pw memberPw, "
 				+ "member_name memberName, "
 				+ "member_level memberLevel "
@@ -89,6 +90,7 @@ public class MemberDao {
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
 			Member returnMember = new Member();
+			returnMember.setMemberNo(rs.getInt("memberNo"));
 			returnMember.setMemberId(rs.getString("memberId"));
 			returnMember.setMemberPw(rs.getString("memberPw"));			
 			returnMember.setMemberName(rs.getString("memberName"));
