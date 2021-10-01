@@ -1,22 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="vo.*" %>    
 <%@ page import="dao.*" %>
-
 <%
 	request.setCharacterEncoding("UTF-8");
-	
-	//	비회원 접근 방어코드
+
+	//	관리자 페이지 접근 방어코드
 	Member loginMember = (Member)session.getAttribute("loginMember");
-	if(loginMember == null){	//	
-		//	System.out.println("접근 불가능" + loginMember.getMemberLevel());
+	if(loginMember == null || loginMember.getMemberLevel() < 1){	//	로그인 전이거나 memberLevel이 0이면
 		response.sendRedirect(request.getContextPath() + "/index.jsp");
 		return;
 	}
-
+	
 	int orderNo = Integer.parseInt(request.getParameter("orderNo"));
 	
 	OrderDao orderDao = new OrderDao();
-	OrderEbookMember oem = orderDao.selectOrderOne(orderNo);
+	OrderEbookMember oem = orderDao.selectOrderEbookOne(orderNo);
 %>
 
 <!DOCTYPE html>
@@ -29,11 +27,11 @@
 	<body>
 	<div class="container-fluid">
 	
-		<!--  mainMenu include  -->
+		<!--  adminMenu include  -->
 		<div>
-			<jsp:include page="/partial/mainMenu.jsp"></jsp:include>
+			<jsp:include page="/partial/adminMenu.jsp"></jsp:include>
 		</div>
-		<!--  mainMenu include -->
+		<!--  adminMenu include -->
 		
 		<div class="jumbotron text-center">	  
 			<h1>상세 구매내역</h1>
@@ -42,8 +40,11 @@
 		<table class="table text-center table-layout:fixed">
 			<thead>
 				<tr>
-					<td><%=oem.getEbook().getEbookTitle() %></td>
+					<td><%=oem.getMember().getMemberId() %></td>
 				</tr>
+				<tr>
+					<td><%=oem.getEbook().getEbookTitle() %></td>
+				</tr>				
 			</thead>
 			<tbody>
 				<tr>
@@ -58,8 +59,7 @@
 				</tr>
 				<tr>	
 					<td>
-						<a class="btn btn-dark" href="<%=request.getContextPath() %>/insertOrderCommentForm.jsp?orderNo=<%=orderNo %>&ebookNo=<%=oem.getEbook().getEbookNo() %>&orderNo=<%=oem.getOrder().getOrderNo() %>">상품평 등록</a>
-						<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectOrderListByMember.jsp">돌아가기</a>
+						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp">돌아가기</a>
 					</td>	
 				</tr>
 			</tbody>

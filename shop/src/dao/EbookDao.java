@@ -218,7 +218,7 @@ public class EbookDao {
 	   }
 	
 		   
-		//	[관리자] ebook 가격 수정 메서드
+		//	[관리자] ebook 가격 수정
 		//	입력 : ebookNo, 수정할 가격
 		public void updateEbookPrice(Ebook ebook) throws ClassNotFoundException, SQLException {
 			
@@ -230,6 +230,22 @@ public class EbookDao {
 		      stmt.setInt(1, ebook.getEbookPrice());
 		      stmt.setInt(2, ebook.getEbookNo());
 		      //	System.out.println("[updateEbookPrice -> ]" + stmt);
+		      stmt.executeUpdate();   	      
+		      stmt.close();
+		      conn.close();
+		}
+		
+		
+		//	[관리자] ebook 삭제
+		public void deleteEbook(int ebookNo) throws ClassNotFoundException, SQLException {
+			
+		      DBUtil dbUtil = new DBUtil();
+		      Connection conn = dbUtil.getConnection();
+		      
+		      String sql = "DELETE FROM ebook WHERE ebook_no=?";
+		      PreparedStatement stmt = conn.prepareStatement(sql);
+		      stmt.setInt(1, ebookNo);
+		      //	System.out.println("[deleteEbook -> ]" + stmt);
 		      stmt.executeUpdate();   	      
 		      stmt.close();
 		      conn.close();

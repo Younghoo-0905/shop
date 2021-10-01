@@ -6,6 +6,11 @@ public class Category {
 	private String createDate;
 	private String categoryState;
 	
+	@Override
+	public String toString() {
+		return "Category [categoryName=" + categoryName + ", updateDate=" + updateDate + ", createDate=" + createDate
+				+ ", categoryState=" + categoryState + "]";
+	}	
 	
 	public String getCategoryState() {
 		return categoryState;

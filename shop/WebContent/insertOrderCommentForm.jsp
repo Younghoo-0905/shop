@@ -67,6 +67,7 @@
 					<tr>	
 						<td>
 							<button class="btn btn-dark" type="submit">등록</button>
+							<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectOrderEbookOne.jsp?orderNo=<%=orderNo %>">돌아가기</a>
 						</td>	
 					</tr>
 				</tbody>

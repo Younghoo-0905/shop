@@ -8,6 +8,14 @@ public class Order {
 	private String createDate;
 	private String updateDate;
 	
+	@Override
+	public String toString() {
+		return "Order [orderNo=" + orderNo + ", ebook=" + ebook.toString() + ", memberNo=" + memberNo
+				+ ", orderPrice=" + orderPrice + ", createDate=" + createDate
+				+ ", updateDate=" + updateDate + "]";
+	}
+	
+	
 	public int getOrderNo() {
 		return orderNo;
 	}

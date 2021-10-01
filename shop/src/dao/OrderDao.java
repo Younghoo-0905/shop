@@ -15,7 +15,7 @@ import vo.OrderEbookMember;
 
 public class OrderDao {
 	
-	//	주문 목록 출력 메서드
+	//	OrderList 출력 메서드
 	//	리턴 타입 OrderEbookMember
 	public ArrayList<OrderEbookMember> selectOrderList(int beginRow, int rowPerPage) throws ClassNotFoundException, SQLException {
 		ArrayList<OrderEbookMember> list = new ArrayList<>();
@@ -67,7 +67,7 @@ public class OrderDao {
 	}
 	
 	
-	//	멤버 별 주문목록 출력 메서드
+	//	멤버 별 OrderList 출력 메서드
 	public ArrayList<OrderEbookMember> selectOrderListByMember(int memberNo) throws ClassNotFoundException, SQLException {
 		ArrayList<OrderEbookMember> list = new ArrayList<>();
 		
@@ -115,10 +115,10 @@ public class OrderDao {
 		stmt.close();
 		conn.close();		
 		return list;
-	}
+	}	
+
 	
-	
-	//	주문 추가 메서드
+	//	Order 추가 메서드
 	public void insertOrder(Order order) throws ClassNotFoundException, SQLException {
 		
 		DBUtil dbUtil = new DBUtil();
@@ -138,7 +138,43 @@ public class OrderDao {
 	}
 	
 	
-	//	[관리자] 주문관리 LastPage 반환 메서드
+	//	Order 상세 내역 출력 메서드
+	//	리턴 타입 OrderEbookMember
+	public OrderEbookMember selectOrderOne(int orderNo) throws ClassNotFoundException, SQLException {
+		OrderEbookMember oem = new OrderEbookMember();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+				
+		String sql = "SELECT "
+				+ "o.order_no orderNo, "
+				+ "o.order_price orderPrice, "
+				+ "e.ebook_title ebookTitle, "
+				+ "e.ebook_img ebookImg "
+				+ "FROM orders o INNER JOIN ebook e "
+				+ "ON o.ebook_no = e.ebook_no";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		//	System.out.println("[selectOrderOne -> ]" + stmt);
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {			
+			Order o = new Order();
+			o.setOrderNo(rs.getInt("orderNo"));
+			o.setOrderPrice(rs.getInt("orderPrice"));
+			oem.setOrder(o);
+			
+			Ebook e = new Ebook();
+			e.setEbookTitle(rs.getString("ebookTitle"));
+			e.setEbookImg(rs.getString("ebookImg"));
+			oem.setEbook(e);							
+		}
+		rs.close();
+		stmt.close();
+		conn.close();		
+		return oem;
+	}
+	
+	
+	//	[관리자] Order관리 LastPage 반환 메서드
 	public int selectOrderLastPage(int rowPerPage, String searchMemberId) throws ClassNotFoundException, SQLException {
 	
 		int lastPage = 0;
@@ -147,10 +183,15 @@ public class OrderDao {
 		
 		PreparedStatement stmt;		
 		if(searchMemberId.equals("")) {	//	전체 행 수
-			String sql = "SELECT COUNT(*) FROM orders";
+			String sql = "SELECT COUNT(*) "
+					+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
+					+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no";
 			stmt = conn.prepareStatement(sql);
 		} else {						//	검색된 memberId 의 전체 행 수
-			String sql = "SELECT COUNT(*) FROM orders WHERE member_id LIKE ?";
+			String sql = "SELECT COUNT(*) "
+					+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
+					+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no "
+					+ "WHERE member_id LIKE ? ";
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, "%"+searchMemberId+"%");
 		}

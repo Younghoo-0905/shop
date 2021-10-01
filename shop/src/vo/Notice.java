@@ -9,6 +9,13 @@ public class Notice {
 	private String createDate;
 	private String updateDate;
 	
+	@Override
+	public String toString() {
+		return "Notice [noticeNo=" + noticeNo + ", noticeTitle=" + noticeTitle + ", noticeContent=" + noticeContent
+				+ ", memberNo=" + memberNo + ", memberName=" + memberName + "createDate=" + createDate
+				+ ", updateDate=" + updateDate + "]";
+	}
+	
 	
 	public int getNoticeNo() {
 		return noticeNo;

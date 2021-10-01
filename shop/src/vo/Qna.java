@@ -10,6 +10,13 @@ public class Qna {
 	private String createDate;
 	private String updateDate;
 	
+	@Override
+	public String toString() {
+		return "Qna [qnaNo=" + qnaNo + ", qnaCategory=" + qnaCategory + ", qnaTitle=" + qnaTitle
+				+ ", qnaContent=" + qnaContent + ", qnaSecret=" + qnaSecret + ", memberNo=" + memberNo
+				+ ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+	}
+	
 	public int getQnaNo() {
 		return qnaNo;
 	}

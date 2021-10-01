@@ -8,6 +8,12 @@ public class QnaComment {
 	private String createDate;
 	private String updateDate;
 	
+	@Override
+	public String toString() {
+		return "QnaComment [qnaNo=" + qnaNo + ", qnaCommentContent=" + qnaCommentContent + ", memberNo=" + memberNo
+				+ ", createDate=" + createDate + ", updateDate=" + updateDate + "]";
+	}   
+	
 	
 	public int getQnaNo() {
 		return qnaNo;

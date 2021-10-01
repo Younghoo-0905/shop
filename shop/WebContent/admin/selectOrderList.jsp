@@ -67,6 +67,7 @@
 					<th>가격</th>
 					<th>구매 날짜</th>
 					<th>구매자 ID</th>
+					<th>상세정보</th>
 				</tr>
 			</thead>
 			<tbody>		
@@ -78,7 +79,8 @@
 						<td><%=oem.getEbook().getEbookTitle() %></td>
 						<td><%=oem.getOrder().getOrderPrice() %></td>
 						<td><%=oem.getOrder().getCreateDate() %></td>
-						<td><%=oem.getMember().getMemberId() %></td>			
+						<td><%=oem.getMember().getMemberId() %></td>	
+						<td><a href="<%=request.getContextPath() %>/admin/selectAdminOrderEbookOne.jsp?orderNo=<%=oem.getOrder().getOrderNo() %>">상세보기</a></td>									
 					</tr>
 			<%
 				}		

@@ -13,7 +13,7 @@ import vo.Qna;
 public class QnaDao {
 	
 	//	QnA 목록 출력
-	public ArrayList<Qna> selectQnaList() throws ClassNotFoundException, SQLException {
+	public ArrayList<Qna> selectQnaListByPage(int beginRow, int rowPerPage) throws ClassNotFoundException, SQLException {
 		ArrayList<Qna> list = new ArrayList<>();
 		
 		DBUtil dbUtil = new DBUtil();
@@ -27,8 +27,10 @@ public class QnaDao {
 				+ "qna_secret qnaSecret, "
 				+ "member_no memberNo, "
 				+ "create_date createDate "
-				+ "FROM qna ORDER BY create_date DESC";
+				+ "FROM qna ORDER BY create_date DESC LIMIT ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
 		//	System.out.println("[QnaDao.selectQnaList -> ]" + stmt);	//	stmt 디버깅
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
@@ -130,7 +132,9 @@ public class QnaDao {
 				+ "q.create_date createDate "
 				+ "FROM qna q LEFT JOIN qna_comment qc "
 				+ "ON q.qna_no = qc.qna_no "
-				+ "WHERE qc.qna_no IS NULL";
+				+ "WHERE qc.qna_no IS NULL "
+				+ "ORDER BY createDate ASC "
+				+ "LIMIT 0, 10";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		//	System.out.println("[QnaDao.selectNotCommentQnaList -> ]" + stmt);	//	stmt 디버깅
 		ResultSet rs = stmt.executeQuery();
@@ -148,6 +152,61 @@ public class QnaDao {
 		stmt.close();
 		conn.close();	
 		return list;
+	}
+	
+	
+	//	답변 내용 없는 QnA 개수
+	public int selectNotCommentQnaCount() throws ClassNotFoundException, SQLException {
+		int count = 0;
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		//	LEFT JOIN 사용해서 답변이 없는 행만 출력하는 쿼리
+		String sql = "SELECT COUNT(*) c "
+				+ "FROM qna q LEFT JOIN qna_comment qc "
+				+ "ON q.qna_no = qc.qna_no "
+				+ "WHERE qc.qna_no IS NULL";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		//	System.out.println("[QnaDao.selectNotCommentQnaList -> ]" + stmt);	//	stmt 디버깅
+		ResultSet rs = stmt.executeQuery();
+		if(rs.next()) {
+			count = rs.getInt("c");
+		}
+		rs.close();
+		stmt.close();
+		conn.close();	
+		return count;
+	}
+	
+	
+	//	QnA 목록 LastPage 반환 메서드
+	public int selectQnaLastPage(int rowPerPage) throws ClassNotFoundException, SQLException {
+		int lastPage = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;		
+		String sql = "SELECT COUNT(*) FROM qna";
+		stmt = conn.prepareStatement(sql);
+	
+		//	System.out.println("[QnA 행 개수 구하는 쿼리 -->] " + stmt);	//	stmt 디버깅
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRowCount = 0;
+		if(rs.next()) {
+			totalRowCount = rs.getInt("COUNT(*)");
+			//	System.out.println("[검색된 행 개수] " + totalRowCount);
+		}
+		lastPage = totalRowCount / rowPerPage;
+		if(totalRowCount % rowPerPage != 0) {
+			lastPage++;
+			//	System.out.println("[lastPage] " + lastPage);
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+		return lastPage;
 	}
 	
 }

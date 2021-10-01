@@ -18,6 +18,7 @@
 	
 	//	답변 내용이 아직 없는 QnA 게시글 목록 불러오기
 	ArrayList<Qna> qnaList = qnaDao.selectNotCommentQnaList();
+	int count = qnaDao.selectNotCommentQnaCount();
 %>
 
 <!DOCTYPE html>
@@ -44,7 +45,7 @@
 		
 		<!-- 아직 답변하지 않은 QnA 게시글 목록 메인화면에 출력 -->
 		
-		<h2 class="text-center">아직 답변하지 않은 QnA 게시글이 있습니다.</h2>
+		<h2 class="text-center">아직 답변하지 않은 QnA 게시글이 <%=count %>개 있습니다.</h2>
 		
 		<table class="table table-hover text-center table-layout:fixed">		
 		

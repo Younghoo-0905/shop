@@ -75,7 +75,7 @@
 				</tr>
 				<tr>	
 					<td>
-						<a class="btn btn-dark" href="">삭제</a>	
+						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/deleteEbookAction.jsp?ebookNo=<%=ebookNo %>">삭제</a>	
 					</td>	
 				</tr>
 			</tbody>

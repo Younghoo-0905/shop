@@ -9,6 +9,13 @@ public class OrderComment {
 	private String createDate;
 	private String updateDate;
 	
+	@Override
+	public String toString() {
+		return "OrderComment [orderNo=" + orderNo + ", ebookNo=" + ebookNo + ", orderScore=" + orderScore
+				+ ", orderCommentContent=" + orderCommentContent + ", createDate=" + createDate
+				+ ", updateDate=" + updateDate + "]";
+	}
+	
 	public int getOrderNo() {
 		return orderNo;
 	}

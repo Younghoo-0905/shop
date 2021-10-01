@@ -13,6 +13,10 @@
 	} else {
 		qnaNo = Integer.parseInt(request.getParameter("qnaNo"));
 	}
+	
+	//	답변 내용 출력을 위한 객체 생성
+	QnaCommentDao qnaCommentDao = new QnaCommentDao();
+	String qnaComment = qnaCommentDao.selectQnaCommentByQnaNo(qnaNo);	//	qnaNo에 대한 답변내용
 
 	QnaDao qnaDao = new QnaDao();
 	Qna qna = new Qna();	
@@ -58,6 +62,18 @@
 				<td valign="middle">내용</td>
 				<td><%=qna.getQnaContent() %></td>
 			</tr>
+			</tr>
+				<%
+					if(qnaComment != null) {	//	답변 내용이 있을 경우 내용 출력
+				%>
+						<tr class="table-active">
+							<td>답변</td>
+							<td><%=qnaComment %></td>
+						</tr>
+				<%
+					}				
+				%>
+			<tr>
 			<tr>
 				<td>작성자 번호</td>
 				<td><%=qna.getMemberNo() %></td>

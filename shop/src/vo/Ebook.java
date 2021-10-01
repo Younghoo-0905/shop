@@ -2,19 +2,30 @@ package vo;
 
 public class Ebook {
 	
-	   public int ebookNo;
-	   public String ebookISBN;
-	   public String categoryName;
-	   public String ebookTitle;
-	   public String ebookAuthor;
-	   public String ebookCompany;
-	   public int ebookPageCount;
-	   public int ebookPrice;
-	   public String ebookImg;
-	   public String ebookSummary;
-	   public String ebookState;
-	   public String createDate;
-	   public String updateDate;
+		public int ebookNo;
+		public String ebookISBN;
+		public String categoryName;
+		public String ebookTitle;
+		public String ebookAuthor;
+		public String ebookCompany;
+   		public int ebookPageCount;
+   		public int ebookPrice;
+   		public String ebookImg;
+   		public String ebookSummary;
+   		public String ebookState;
+   		public String createDate;
+   		public String updateDate;
+	   
+		@Override
+		public String toString() {
+			return "Ebook [ebookNo=" + ebookNo + ", ebookISBN=" + ebookISBN + ", categoryName=" + categoryName
+					+ ", ebookTitle=" + ebookTitle + ", ebookAuthor=" + ebookAuthor + ", ebookCompany=" + ebookCompany
+					+ ", ebookPageCount=" + ebookPageCount + ", ebookPrice=" + ebookPrice + ", ebookImg=" + ebookImg
+					+ ", ebookSummary=" + ebookSummary + ", ebookState=" + ebookState + ", createDate=" + createDate
+					+ ", updateDate=" + updateDate + "]";
+		}   
+	   
+	   
 		public int getEbookNo() {
 			return ebookNo;
 		}

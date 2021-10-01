@@ -31,15 +31,20 @@
 		</div>
 		
 		<form id="loginForm" class="text-center" method="post" action="<%=request.getContextPath() %>/loginAction.jsp">
-		
-			<div>회원 ID : </div>
-			<div><input id="memberId" type="text" name="memberId" value=""></div>
-			<div>회원 PW : </div>
-			<div><input id="memberPw" type="password" name="memberPw" value=""></div><br>
+					
+			<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
+				<tr>
+					<td>ID : </td>
+					<td><div><input id="memberId" type="text" name="memberId" value=""></div></td>
+				</tr>	
+				<tr>
+					<td>비밀번호 : </td>
+					<td><input id="memberPw" type="password" name="memberPw" value=""></td>					
+				</tr>								
+			</table>
 			
 			<button id="loginBtn" class="btn btn-dark" type="button">로그인</button>
-			<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>	
-		
+			<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>			
 		</form>
 		
 		<script>
@@ -56,7 +61,7 @@
 				}
 				
 			});		
-		</script>
+		</script>	
 	</div>
 	</body>
 </html>

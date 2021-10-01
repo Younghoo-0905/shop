@@ -92,7 +92,12 @@
 			%>
 					<tr>
 						<td><%=m.getMemberNo() %></td>
-						<td><%=m.getMemberId() %></td>
+						<!-- 회원 ID클릭 : 해당 회원 정보 조회 -->
+						<td>
+							<a href="<%=request.getContextPath() %>/admin/selectMemberOne.jsp?memberId=<%=m.getMemberId() %>">						
+							<%=m.getMemberId() %>
+							</a>
+						</td>
 						<!-- 회원의 등급 표시 -->
 						<td>
 							<%

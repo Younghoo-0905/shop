@@ -12,8 +12,8 @@ import vo.Notice;
 
 public class NoticeDao {
 	
-	//	공지 리스트 출력
-	public ArrayList<Notice> selectNoticeList() throws ClassNotFoundException, SQLException {
+	//	notice 전체 리스트 출력
+	public ArrayList<Notice> selectNoticeListByPage(int beginRow, int rowPerPage) throws ClassNotFoundException, SQLException {
 		ArrayList<Notice> list = new ArrayList<>();
 		
 		DBUtil dbUtil = new DBUtil();
@@ -25,8 +25,10 @@ public class NoticeDao {
 				+ "notice_content noticeContent, "
 				+ "member_name memberName, "
 				+ "update_date updateDate "
-				+ "FROM notice ORDER BY create_date DESC";
+				+ "FROM notice ORDER BY create_date DESC LIMIT ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, beginRow);
+		stmt.setInt(2, rowPerPage);
 		//	System.out.println("[NoticeDao.selectNoticeList -> ]" + stmt);	//	stmt 디버깅
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
@@ -45,7 +47,7 @@ public class NoticeDao {
 	}
 	
 	
-	//	공지 등록
+	//	notice 등록
 	public void insertNotice(Notice notice) throws ClassNotFoundException, SQLException {
 		
 		DBUtil dbUtil = new DBUtil();
@@ -65,7 +67,7 @@ public class NoticeDao {
 	}
 	
 	
-	//	선택공지 정보 가져오기 (공지 상세보기)
+	//	notice 정보 가져오기 (notice 상세보기)
 	public Notice selectNoticeOne(int noticeNo) throws ClassNotFoundException, SQLException {
 		Notice n = new Notice();
 		
@@ -97,7 +99,7 @@ public class NoticeDao {
 	}
 	
 	
-	//	공지 수정
+	//	notice 수정
 	public void updateNotice(Notice notice) throws ClassNotFoundException, SQLException {
 		
 		DBUtil dbUtil = new DBUtil();
@@ -119,7 +121,7 @@ public class NoticeDao {
 	}
 	
 	
-	//	공지 삭제
+	//	notice 삭제
 	public void deleteNotice(int noticeNo) throws ClassNotFoundException, SQLException {
 		
 		DBUtil dbUtil = new DBUtil();
@@ -132,6 +134,36 @@ public class NoticeDao {
 		stmt.executeUpdate();
 		stmt.close();
 		conn.close();			
+	}
+	
+	
+	//	notice 목록 LastPage 반환 메서드
+	public int selectNoticeLastPage(int rowPerPage) throws ClassNotFoundException, SQLException {
+		int lastPage = 0;
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		PreparedStatement stmt;		
+		String sql = "SELECT COUNT(*) FROM notice";
+		stmt = conn.prepareStatement(sql);
+	
+		//	System.out.println("[notice 행 개수 구하는 쿼리 -->] " + stmt);	//	stmt 디버깅
+		ResultSet rs = stmt.executeQuery();
+		
+		int totalRowCount = 0;
+		if(rs.next()) {
+			totalRowCount = rs.getInt("COUNT(*)");
+			//	System.out.println("[검색된 행 개수] " + totalRowCount);
+		}
+		lastPage = totalRowCount / rowPerPage;
+		if(totalRowCount % rowPerPage != 0) {
+			lastPage++;
+			//	System.out.println("[lastPage] " + lastPage);
+		}
+		rs.close();
+		stmt.close();
+		conn.close();
+		return lastPage;
 	}
 
 

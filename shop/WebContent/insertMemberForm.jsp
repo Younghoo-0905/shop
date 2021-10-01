@@ -50,18 +50,21 @@
 		
 			<!-- 아이디 중복 검사를 위한 폼 -->		
 			<form class="text-center" method="post" action="<%=request.getContextPath() %>/selectMemberIdCheckAction.jsp">
-				<div>
-					회원 ID :
-					<input type="text" name="memberIdCheck">	
-					<button type="submit">중복 검사</button>
-				</div>		
+				
+				<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
+					<tr>
+						<td>회원 ID 중복검사 : </td>
+						<td><input type="text" name="memberIdCheck"><button type="submit">검사</button></td>								
+					</tr>
+				</table>				
+				
 			</form>
 			
 		</div>
 		<div class="d-flex justify-content-center">
 			
 			<form id="joinForm" class="text-center" method="post" action="<%=request.getContextPath() %>/insertMemberAction.jsp">			
-				<table>
+				<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
 					<tr>
 						<td>회원 ID : </td>
 						<td><input id="memberId" type="text" name="memberId" readonly="readonly" value="<%=memberIdCheck %>"></td>								
@@ -91,7 +94,8 @@
 					</tr>
 				</table><br>				
 				<button id="btn" class="btn btn-dark" type="button">회원 가입</button>	
-				<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>			
+				<a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a>					
+						
 			</form>
 		</div>
 		

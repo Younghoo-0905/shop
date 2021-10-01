@@ -56,13 +56,16 @@
 						<td><%=oem.getEbook().getEbookTitle() %></td>
 						<td><%=oem.getOrder().getOrderPrice() %></td>
 						<td><%=oem.getOrder().getCreateDate() %></td>	
-						<td><a href="<%=request.getContextPath() %>/selectOrderEbookOne.jsp?ebookNo=<%=oem.getEbook().getEbookNo() %>&orderNo=<%=oem.getOrder().getOrderNo() %>&orderPrice=<%=oem.getOrder().getOrderPrice() %>">상세보기</a>
+						<td><a href="<%=request.getContextPath() %>/selectOrderEbookOne.jsp?orderNo=<%=oem.getOrder().getOrderNo() %>">상세보기</a>
 					</tr>
 			<%
 				}		
 			%>		
 			</tbody>	
 		</table>
+		
+		<div class="text-center"><a class="btn btn-dark" href="<%=request.getContextPath() %>/index.jsp">돌아가기</a></div>	
+	
 	</div>
 	</body>
 </html>

@@ -68,7 +68,7 @@
 					}
 				%>			
 			</select>		
-			<button type="submit">검색</button>
+			<button class="btn btn-dark" type="submit">검색</button>
 		</form>				
 		
 		<!-- 전자책 목록 출력 -->

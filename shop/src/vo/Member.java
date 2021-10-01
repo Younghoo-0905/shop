@@ -11,6 +11,13 @@ public class Member {
 	private String updateDate;
 	private String createDate;
 	
+	@Override
+	public String toString() {
+		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPw=" + memberPw
+				+ ", memberLevel=" + memberLevel + ", memberName=" + memberName + ", memberAge=" + memberAge
+				+ ", memberGender=" + memberGender + ", updateDate=" + updateDate + ", createDate=" + createDate + "]";
+	}
+	
 	
 	public int getMemberNo() {
 		return memberNo;

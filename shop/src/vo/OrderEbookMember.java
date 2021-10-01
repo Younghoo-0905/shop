@@ -6,6 +6,12 @@ public class OrderEbookMember {
 	private Ebook ebook;
 	private Member member;
 	
+	@Override
+	public String toString() {
+		return "OrderEbookMember [order=" + order.toString() + ", ebook=" + ebook.toString()
+		+ ", member=" + member.toString() + "]";
+	}
+	
 	public Order getOrder() {
 		return order;
 	}
