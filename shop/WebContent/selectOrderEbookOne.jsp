@@ -56,9 +56,14 @@
 						<div>구매 가격 : ₩ <%=oem.getOrder().getOrderPrice() %></div>						
 					</td>	
 				</tr>
+				<tr>
+					<td>
+						<div>구매 날짜 : <%=oem.getOrder().getUpdateDate() %></div>						
+					</td>	
+				</tr>
 				<tr>	
 					<td>
-						<a class="btn btn-dark" href="<%=request.getContextPath() %>/insertOrderCommentForm.jsp?orderNo=<%=orderNo %>&ebookNo=<%=oem.getEbook().getEbookNo() %>&orderNo=<%=oem.getOrder().getOrderNo() %>">상품평 등록</a>
+						<a class="btn btn-dark" href="<%=request.getContextPath() %>/insertOrderCommentForm.jsp?ebookNo=<%=oem.getEbook().getEbookNo() %>&orderNo=<%=oem.getOrder().getOrderNo() %>">상품평 등록</a>
 						<a class="btn btn-dark" href="<%=request.getContextPath() %>/selectOrderListByMember.jsp">돌아가기</a>
 					</td>	
 				</tr>

@@ -14,7 +14,7 @@
 	int orderNo = Integer.parseInt(request.getParameter("orderNo"));
 	
 	OrderDao orderDao = new OrderDao();
-	OrderEbookMember oem = orderDao.selectOrderEbookOne(orderNo);
+	OrderEbookMember oem = orderDao.selectOrderOne(orderNo);
 %>
 
 <!DOCTYPE html>
@@ -40,10 +40,10 @@
 		<table class="table text-center table-layout:fixed">
 			<thead>
 				<tr>
-					<td><%=oem.getMember().getMemberId() %></td>
+					<td>구매자 ID : <%=oem.getMember().getMemberId() %></td>
 				</tr>
 				<tr>
-					<td><%=oem.getEbook().getEbookTitle() %></td>
+					<td>전자책 제목 : <%=oem.getEbook().getEbookTitle() %></td>
 				</tr>				
 			</thead>
 			<tbody>
@@ -55,6 +55,11 @@
 				<tr>
 					<td>
 						<div>구매 가격 : ₩ <%=oem.getOrder().getOrderPrice() %></div>						
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<div>구매 날짜 : <%=oem.getOrder().getUpdateDate() %></div>						
 					</td>	
 				</tr>
 				<tr>	

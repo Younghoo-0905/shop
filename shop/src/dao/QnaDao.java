@@ -178,6 +178,22 @@ public class QnaDao {
 		conn.close();	
 		return count;
 	}
+		
+	
+	//	[관리자] Qna 삭제 메서드
+	public void deleteQna(int qnaNo) throws ClassNotFoundException, SQLException {
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+		
+		String sql = "DELETE FROM qna WHERE qna_no=?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, qnaNo);
+		//	System.out.println("[QnaDao.deleteQna -> ]" + stmt);	//	stmt 디버깅
+		stmt.executeUpdate();
+		stmt.close();
+		conn.close();	
+	}
 	
 	
 	//	QnA 목록 LastPage 반환 메서드

@@ -19,9 +19,9 @@
 	//	System.out.println("[현재 페이지] " + currentPage);
 	
 	//	검색어
-	String searchMemberId = "";
-	if(request.getParameter("searchMemberId") != null) {
-		searchMemberId = request.getParameter("searchMemberId");
+	String searchEbookTitle = "";
+	if(request.getParameter("searchEbookTitle") != null) {
+		searchEbookTitle = request.getParameter("searchEbookTitle");
 	}
 	
 	int pagingNum = ((currentPage-1) / 10);		//	페이지의 페이지 넘버 : 0부터 시작	
@@ -30,7 +30,13 @@
 	
 	//	주문 목록을 가져오는 메서드
 	OrderDao orderDao = new OrderDao();
-	ArrayList<OrderEbookMember> list = orderDao.selectOrderList(beginRow, ROW_PER_PAGE);
+	ArrayList<OrderEbookMember> list = null;
+	
+	if(searchEbookTitle.equals("") == true) {
+		list = orderDao.selectOrderList(beginRow, ROW_PER_PAGE);
+	} else {		//	검색한 아이디가 있을 경우 출력할 리스트
+		list = orderDao.selectOrderListBySearchEbookTitle(beginRow, ROW_PER_PAGE, searchEbookTitle);
+	}
 %>
 
 <!DOCTYPE html>
@@ -53,10 +59,10 @@
 	
 		<table class="table table-hover text-center table-layout:fixed">	
 		
-			<!-- memberId로 검색 -->
+			<!-- ebookTitle로 검색 -->
 			<form action="<%=request.getContextPath() %>/admin/selectOrderList.jsp" method="get">
-				<span>회원 ID : </span>
-				<input type="text" name="searchMemberId">
+				<span>전자책 제목 : </span>
+				<input type="text" name="searchEbookTitle">
 				<button class="btn btn-dark" type="submit">검색</button>		
 			</form>			
 			
@@ -94,30 +100,30 @@
 			<ul class =	"pagination active">
 		<%		
 			//	lastPage를 구하는 메서드 사용
-			int lastPage = orderDao.selectOrderLastPage(ROW_PER_PAGE, searchMemberId);
+			int lastPage = orderDao.selectOrderLastPage(ROW_PER_PAGE, searchEbookTitle);
 			if(pagingNum > 0) {		//	'이전' 버튼
 		%>			
-				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>">이전</a></li>
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) %>&searchEbookTitle=<%=searchEbookTitle %>">이전</a></li>
 		<%
 			}				
 		
 			for(int i = 1; i<=10; i++) {	//	페이지 번호
 				if(i + (pagingNum * 10) == currentPage) {	//	currentPage인 링크버튼 파란색으로 표시
 		%>
-					<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+					<li class="page-item active"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchEbookTitle=<%=searchEbookTitle %>"><%=i + (pagingNum * 10) %></a></li>
 		<%
 				} else {									//	currentPage 아닌 링크버튼
 		%>					
-					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
+					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchEbookTitle=<%=searchEbookTitle %>"><%=i + (pagingNum * 10) %></a></li>
 		<%
 				}
-				if((i + (pagingNum * 10)) == lastPage) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
+				if(((i + (pagingNum * 10)) == lastPage) || lastPage == 0) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
 					break;
 				}
 			}
 			if(pagingNum < ((lastPage-1) / ROW_PER_PAGE)) {	//	'다음' 버튼
 		%>
-				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) + 11 %>&searchMemberId=<%=searchMemberId %>">다음</a></li>					
+				<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectOrderList.jsp?currentPage=<%=(pagingNum * 10) + 11 %>&searchEbookTitle=<%=searchEbookTitle %>">다음</a></li>					
 		<%
 			}
 		%>							

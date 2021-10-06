@@ -54,7 +54,7 @@
 					<tr>
 						<td><%=oem.getOrder().getOrderNo() %></td>
 						<td><%=oem.getEbook().getEbookTitle() %></td>
-						<td><%=oem.getOrder().getOrderPrice() %></td>
+						<td>₩ <%=oem.getOrder().getOrderPrice() %></td>
 						<td><%=oem.getOrder().getCreateDate() %></td>	
 						<td><a href="<%=request.getContextPath() %>/selectOrderEbookOne.jsp?orderNo=<%=oem.getOrder().getOrderNo() %>">상세보기</a>
 					</tr>

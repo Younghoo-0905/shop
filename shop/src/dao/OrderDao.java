@@ -67,6 +67,60 @@ public class OrderDao {
 	}
 	
 	
+	
+	//	전자책 이름별로 검색한 리스트 출력
+	public ArrayList<OrderEbookMember> selectOrderListBySearchEbookTitle(int beginRow, int rowPerPage, String searchEbookTitle) throws ClassNotFoundException, SQLException {
+		ArrayList<OrderEbookMember> list = new ArrayList<>();
+		
+		DBUtil dbUtil = new DBUtil();
+		Connection conn = dbUtil.getConnection();
+				
+		String sql = "SELECT "
+				+ "o.order_no orderNo, "
+				+ "o.order_price orderPrice, "
+				+ "o.create_date createDate, "
+				+ "e.ebook_no ebookNo, "
+				+ "e.ebook_title ebookTitle, "
+				+ "m.member_no memberNo, "
+				+ "m.member_id memberId "
+				+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
+				+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no "
+				+ "WHERE ebook_title LIKE ? "
+				+ "ORDER BY o.create_date DESC LIMIT ?, ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setString(1, "%"+searchEbookTitle+"%");
+		stmt.setInt(2, beginRow);
+		stmt.setInt(3, rowPerPage);
+		//	System.out.println("[selectOrderListBySearchEbookTitle -> ]" + stmt);
+		ResultSet rs = stmt.executeQuery();
+		while(rs.next()) {
+			OrderEbookMember oem = new OrderEbookMember();
+			
+			Order o = new Order();
+			o.setOrderNo(rs.getInt("orderNo"));
+			o.setOrderPrice(rs.getInt("orderPrice"));
+			o.setCreateDate(rs.getString("createDate"));
+			oem.setOrder(o);
+			
+			Ebook e = new Ebook();
+			e.setEbookNo(rs.getInt("ebookNo"));
+			e.setEbookTitle(rs.getString("ebookTitle"));
+			oem.setEbook(e);
+			
+			Member m = new Member();
+			m.setMemberNo(rs.getInt("memberNo"));
+			m.setMemberId(rs.getString("memberId"));
+			oem.setMember(m);
+			
+			list.add(oem);			
+		}
+		rs.close();
+		stmt.close();
+		conn.close();		
+		return list;
+	}
+	
+	
 	//	멤버 별 OrderList 출력 메서드
 	public ArrayList<OrderEbookMember> selectOrderListByMember(int memberNo) throws ClassNotFoundException, SQLException {
 		ArrayList<OrderEbookMember> list = new ArrayList<>();
@@ -116,6 +170,9 @@ public class OrderDao {
 		conn.close();		
 		return list;
 	}	
+	
+	
+	
 
 	
 	//	Order 추가 메서드
@@ -149,23 +206,34 @@ public class OrderDao {
 		String sql = "SELECT "
 				+ "o.order_no orderNo, "
 				+ "o.order_price orderPrice, "
+				+ "o.update_date updateDate, "
+				+ "e.ebook_no ebookNo, "
 				+ "e.ebook_title ebookTitle, "
-				+ "e.ebook_img ebookImg "
-				+ "FROM orders o INNER JOIN ebook e "
-				+ "ON o.ebook_no = e.ebook_no";
+				+ "e.ebook_img ebookImg, "
+				+ "m.member_id memberId "
+				+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
+				+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no "
+				+ "WHERE o.order_no=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, orderNo);
 		//	System.out.println("[selectOrderOne -> ]" + stmt);
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {			
 			Order o = new Order();
 			o.setOrderNo(rs.getInt("orderNo"));
 			o.setOrderPrice(rs.getInt("orderPrice"));
+			o.setUpdateDate(rs.getString("updateDate"));
 			oem.setOrder(o);
 			
 			Ebook e = new Ebook();
+			e.setEbookNo(rs.getInt("ebookNo"));
 			e.setEbookTitle(rs.getString("ebookTitle"));
 			e.setEbookImg(rs.getString("ebookImg"));
 			oem.setEbook(e);							
+			
+			Member m = new Member();
+			m.setMemberId(rs.getString("memberId"));
+			oem.setMember(m);
 		}
 		rs.close();
 		stmt.close();
@@ -175,14 +243,14 @@ public class OrderDao {
 	
 	
 	//	[관리자] Order관리 LastPage 반환 메서드
-	public int selectOrderLastPage(int rowPerPage, String searchMemberId) throws ClassNotFoundException, SQLException {
+	public int selectOrderLastPage(int rowPerPage, String searchEbookTitle) throws ClassNotFoundException, SQLException {
 	
 		int lastPage = 0;
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();
 		
 		PreparedStatement stmt;		
-		if(searchMemberId.equals("")) {	//	전체 행 수
+		if(searchEbookTitle.equals("")) {	//	전체 행 수
 			String sql = "SELECT COUNT(*) "
 					+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
 					+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no";
@@ -191,9 +259,9 @@ public class OrderDao {
 			String sql = "SELECT COUNT(*) "
 					+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
 					+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no "
-					+ "WHERE member_id LIKE ? ";
+					+ "WHERE e.ebook_title LIKE ? ";
 			stmt = conn.prepareStatement(sql);
-			stmt.setString(1, "%"+searchMemberId+"%");
+			stmt.setString(1, "%"+searchEbookTitle+"%");
 		}
 		//	System.out.println("[selectLastPage -->] " + stmt);	//	stmt 디버깅
 		ResultSet rs = stmt.executeQuery();
@@ -208,7 +276,7 @@ public class OrderDao {
 			lastPage++;
 			//	System.out.println("[lastPage] " + lastPage);
 		}
-		System.out.println("[lastPage] " + lastPage);
+		//	System.out.println("[lastPage] " + lastPage);
 		rs.close();
 		stmt.close();
 		conn.close();

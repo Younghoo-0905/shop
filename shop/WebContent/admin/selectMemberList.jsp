@@ -159,7 +159,7 @@
 					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp?currentPage=<%=i + (pagingNum * 10) %>&searchMemberId=<%=searchMemberId %>"><%=i + (pagingNum * 10) %></a></li>
 		<%
 				}
-				if((i + (pagingNum * 10)) == lastPage) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
+				if(((i + (pagingNum * 10)) == lastPage) || lastPage == 0) {	//	currentPage가 lastPage이면 다음페이지를 더이상 출력하지 않는다
 					break;
 				}
 			}

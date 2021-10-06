@@ -53,9 +53,10 @@
 				<tr>
 					<th width="10%">번호</th>		
 					<th width="10%">카테고리</th>		
-					<th width="40%">제목</th>		
+					<th width="30%">제목</th>		
 					<th width="20%">작성자 번호</th>
 					<th width="20%">작성일</th>
+					<th width="10%">삭제</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -80,6 +81,7 @@
 			%>
 						<td><%=q.getMemberNo() %></td>
 						<td><%=q.getCreateDate() %></td>
+						<td><a href="<%=request.getContextPath() %>/admin/deleteQnaAction.jsp?qnaNo=<%=q.getQnaNo() %>">삭제</a></td>
 					</tr>
 			<%
 				}		

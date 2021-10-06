@@ -253,7 +253,7 @@ public class MemberDao {
 		lastPage = totalRowCount / rowPerPage;
 		if(totalRowCount % rowPerPage != 0) {
 			lastPage++;
-			//	System.out.println("[lastPage] " + lastPage);
+			System.out.println("[lastPage] " + lastPage);
 		}
 		rs.close();
 		stmt.close();
