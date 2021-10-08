@@ -45,16 +45,22 @@
 			</div>
 			
 			<form class="text-center" method="post" action="<%=request.getContextPath() %>/admin/updateMemberLevelAction.jsp">
-			
-				<div>회원 No : </div>
-				<div><input type="text" name="memberNo" value="<%=memberNo %>" readonly="readonly"></div>
-				<div>회원 등급 : </div>
-				<div>
-					<select name="memberLevel">
-						<option value="0">0</option>
-						<option value="1">1</option>						
-					</select>	
-				</div><br>
+						
+				<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
+					<tr>
+						<td>회원 No : </td>
+						<td><input type="hidden" name="memberNo" value="<%=memberNo %>" readonly="readonly"><%=memberNo %></td>								
+					</tr>
+					<tr>
+						<td>회원 등급 : </td>
+						<td>
+							<select name="memberLevel">
+								<option value="0">0</option>
+								<option value="1">1</option>						
+							</select>	
+						</td>
+					</tr>
+				</table>
 				
 				<button class="btn btn-dark" type="submit">적용</button>
 				<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp">돌아가기</a>	

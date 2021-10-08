@@ -45,11 +45,17 @@
 			</div>
 			
 			<form class="text-center" method="post" action="<%=request.getContextPath() %>/admin/deleteMemberAction.jsp">
-			
-				<div>회원 No : </div>
-				<div><input type="text" name="memberNo" value="<%=memberNo %>" readonly="readonly"></div>
-				<div>관리자 비밀번호 : </div>
-				<div><input type="password" name="adminPw"></div><br>
+						
+				<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
+					<tr>
+						<td>회원 No : </td>
+						<td><input type="hidden" name="memberNo" value="<%=memberNo %>" readonly="readonly"><%=memberNo %></td>								
+					</tr>
+					<tr>
+						<td>관리자 비밀번호 : </td>
+						<td><input type="password" name="adminPw"></td>
+					</tr>				
+				</table>
 				
 				<button class="btn btn-dark" type="submit">회원 탈퇴</button>
 				<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp">돌아가기</a>	

@@ -45,15 +45,21 @@
 			</div>
 			
 			<form class="text-center" method="post" action="<%=request.getContextPath() %>/admin/updateMemberPwAction.jsp">
-			
-				<div>회원 No : </div>
-				<div><input type="text" name="memberNo" value="<%=memberNo %>" readonly="readonly"></div>
-				<div>변경할 PW : </div>
-				<div><input type="password" name="memberPw"></div><br>
+						
+				<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
+					<tr>
+						<td>회원 No : </td>
+						<td><input type="hidden" name="memberNo" value="<%=memberNo %>" readonly="readonly"><%=memberNo %></td>								
+					</tr>
+					<tr>
+						<td>변경할 PW : </td>
+						<td><input type="password" name="memberPw"></td>
+					</tr>				
+				</table>
 				
 				<button class="btn btn-dark" type="submit">변경</button>
 				<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectMemberList.jsp">돌아가기</a>	
-			
+		
 			</form>		
 		</div>
 	</body>

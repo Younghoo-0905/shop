@@ -253,7 +253,7 @@ public class MemberDao {
 		lastPage = totalRowCount / rowPerPage;
 		if(totalRowCount % rowPerPage != 0) {
 			lastPage++;
-			System.out.println("[lastPage] " + lastPage);
+			//	System.out.println("[lastPage] " + lastPage);
 		}
 		rs.close();
 		stmt.close();
@@ -274,7 +274,7 @@ public class MemberDao {
 		stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, memberNo);
 		//	stmt 디버깅
-		System.out.println("[deleteMemberByAdmin -> ]" + stmt);
+		//	System.out.println("[deleteMemberByAdmin -> ]" + stmt);
 		stmt.executeQuery();
 		stmt.close();
 		conn.close();

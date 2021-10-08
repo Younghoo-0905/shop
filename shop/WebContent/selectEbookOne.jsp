@@ -73,6 +73,16 @@
 					</tr>
 					<tr>
 						<td>
+							<div>저자 : <%=ebook.getEbookAuthor() %></div>						
+						</td>	
+					</tr>
+					<tr>
+						<td>
+							<div>출판사 : <%=ebook.getEbookCompany() %></div>						
+						</td>	
+					</tr>
+					<tr>
+						<td>
 							<div>가격 : ₩ <%=ebook.getEbookPrice() %></div>						
 						</td>	
 					</tr>

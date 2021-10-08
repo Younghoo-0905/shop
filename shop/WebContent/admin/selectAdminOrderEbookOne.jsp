@@ -43,7 +43,7 @@
 					<td>구매자 ID : <%=oem.getMember().getMemberId() %></td>
 				</tr>
 				<tr>
-					<td>전자책 제목 : <%=oem.getEbook().getEbookTitle() %></td>
+					<td>제목 : <%=oem.getEbook().getEbookTitle() %></td>
 				</tr>				
 			</thead>
 			<tbody>

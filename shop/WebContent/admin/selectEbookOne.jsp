@@ -64,6 +64,16 @@
 				</tr>
 				<tr>
 					<td>
+						<div>저자 : <%=ebook.getEbookAuthor() %></div>						
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<div>출판사 : <%=ebook.getEbookCompany() %></div>						
+					</td>	
+				</tr>
+				<tr>
+					<td>
 						<div>가격 : ₩ <%=ebook.getEbookPrice() %></div>
 						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/updateEbookPriceForm.jsp?ebookNo=<%=ebookNo %>">가격 수정</a>
 					</td>	
@@ -76,6 +86,7 @@
 				<tr>	
 					<td>
 						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/deleteEbookAction.jsp?ebookNo=<%=ebookNo %>">삭제</a>	
+						<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectEbookList.jsp">돌아가기</a>	
 					</td>	
 				</tr>
 			</tbody>

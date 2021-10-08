@@ -231,27 +231,29 @@ public class EbookDao {
 			Connection conn = dbUtil.getConnection();
 			
 			PreparedStatement stmt;	
-			if(categoryName.equals("all")) {		//	카테고리 검색값이 x
+			if(categoryName.equals("all") || categoryName.equals("")) {		//	카테고리 검색값이 x
 				if(searchEbookTitle.equals("")) {	//	제목 검색값이 x
 					String sql = "SELECT COUNT(*) FROM ebook";
 					stmt = conn.prepareStatement(sql);				
-					System.out.println(stmt);	
+					//	System.out.println(stmt);	
 				} else {							//	제목 검색값이 o
 					String sql = "SELECT COUNT(*) FROM ebook WHERE ebook_title LIKE ?";
 					stmt = conn.prepareStatement(sql);			
 					stmt.setString(1, "%"+searchEbookTitle+"%");
-					System.out.println(stmt);
+					//	System.out.println(stmt);
 				}			
 			} else {							//	카테고리 검색값이 o
 				if(searchEbookTitle.equals("")) {	//	제목 검색값이 x
 					String sql = "SELECT COUNT(*) FROM ebook WHERE category_name=?";
 					stmt = conn.prepareStatement(sql);					
 					stmt.setString(1, categoryName);
+					//	System.out.println(stmt);
 				} else {							//	제목 검색값이 o
 					String sql = "SELECT COUNT(*) FROM ebook WHERE category_name=? AND ebook_title LIKE ?";
 					stmt = conn.prepareStatement(sql);					
 					stmt.setString(1, categoryName);
 					stmt.setString(2, "%"+searchEbookTitle+"%");
+					//	System.out.println(stmt);
 				}							
 			}
 			//	System.out.println("[행 개수 구하는 쿼리 -->] " + stmt);	//	stmt 디버깅
@@ -265,7 +267,7 @@ public class EbookDao {
 			lastPage = totalRowCount / rowPerPage;
 			if(totalRowCount % rowPerPage != 0) {
 				lastPage++;
-				System.out.println("[lastPage] " + lastPage);
+				//	System.out.println("[lastPage] " + lastPage);
 			}
 			rs.close();
 			stmt.close();
@@ -282,7 +284,13 @@ public class EbookDao {
 			Connection conn = dbUtil.getConnection();
 			
 			PreparedStatement stmt;		
-			String sql = "SELECT ebook_no ebookNo, ebook_title ebookTitle, ebook_img ebookImg, ebook_price ebookPrice FROM ebook WHERE ebook_no=?";
+			String sql = "SELECT ebook_no ebookNo, "
+					+ "ebook_title ebookTitle, "
+					+ "ebook_author ebookAuthor, "
+					+ "ebook_company ebookCompany, "
+					+ "ebook_img ebookImg, "
+					+ "ebook_price ebookPrice "
+					+ "FROM ebook WHERE ebook_no=?";
 			stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, ebookNo);
 			//	System.out.println("[selectEbookOne -> ]" + stmt);
@@ -291,6 +299,8 @@ public class EbookDao {
 				ebook = new Ebook();
 				ebook.setEbookNo(rs.getInt("ebookNo"));
 				ebook.setEbookTitle(rs.getString("ebookTitle"));
+				ebook.setEbookAuthor(rs.getString("ebookAuthor"));
+				ebook.setEbookCompany(rs.getString("ebookCompany"));
 				ebook.setEbookImg(rs.getString("ebookImg"));
 				ebook.setEbookPrice(rs.getInt("ebookPrice"));
 			}

@@ -111,7 +111,7 @@ public class OrderCommentDao {
 			lastPage++;
 			//	System.out.println("[lastPage] " + lastPage);
 		}
-		System.out.println("[lastPage] " + lastPage);
+		//	System.out.println("[lastPage] " + lastPage);
 		rs.close();
 		stmt.close();
 		conn.close();
