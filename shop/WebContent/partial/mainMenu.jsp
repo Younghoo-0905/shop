@@ -5,8 +5,5 @@
 		<li><a href="<%=request.getContextPath() %>/selectEbookList.jsp">[전자책 검색]</a></li>
 		<li><a href="<%=request.getContextPath() %>/selectNoticeList.jsp">[공지 게시판]</a></li>
 		<li><a href="<%=request.getContextPath() %>/selectQnaList.jsp">[QnA 게시판]</a></li>
-		<li><a href="">menu3</a></li>
-		<li><a href="">menu4</a></li>
-		<li><a href="">menu5</a></li>
 	</ul>
 </div>

@@ -37,14 +37,16 @@
 		</h1>
 	</div>
 	
-	<form action="<%=request.getContextPath() %>/admin/updateEbookImgAction.jsp" method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath() %>/admin/updateEbookImgAction.jsp" class="text-center" method="post" enctype="multipart/form-data">
 				<!-- multipart/form-data : 액션으로 기계어코드를 넘길 때 사용 -->
 				<!-- application/x-www-form-urlencoded : 액션으로 문자열 넘길 때 사용 -->
 				
-		<input type="text" name="ebookNo" value="<%=ebookNo %>" readonly="readonly">
-		<input type="file" name="ebookImg">
-		
-	  	<button type="submit">이미지파일 수정</button>
+		<div>
+			<input type="hidden" name="ebookNo" value="<%=ebookNo %>" readonly="readonly">상품 번호 : <%=ebookNo %>
+			<input type="file" name="ebookImg">
+		  	<button type="submit">이미지파일 수정</button>
+		</div>
+		<br>
 	  	<a class="btn btn-dark" href="<%=request.getContextPath() %>/admin/selectEbookOne.jsp?ebookNo=<%=ebookNo %>">돌아가기</a>	
 	
 	</form>	

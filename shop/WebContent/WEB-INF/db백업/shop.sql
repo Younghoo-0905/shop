@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS `ebook` (
   CONSTRAINT `FK1` FOREIGN KEY (`category_name`) REFERENCES `category` (`category_name`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 shop.ebook:~1,000 rows (대략적) 내보내기
+-- 테이블 데이터 shop.ebook:~999 rows (대략적) 내보내기
 DELETE FROM `ebook`;
 /*!40000 ALTER TABLE `ebook` DISABLE KEYS */;
 INSERT INTO `ebook` (`ebook_no`, `ebook_isbn`, `category_name`, `ebook_title`, `ebook_author`, `ebook_company`, `ebook_page_count`, `ebook_price`, `ebook_img`, `ebook_summary`, `create_date`, `update_date`, `ebook_state`) VALUES
@@ -719,7 +719,7 @@ INSERT INTO `ebook` (`ebook_no`, `ebook_isbn`, `category_name`, `ebook_title`, `
 	(653, '188815618-X', '소설', 'Bytecard', 'Jacquelin', 'Realblab', 708, 29526, 'noimage.jpg', 'sit amet nulla quisque arcu libero rutrum ac lobortis vel dapibus at', '2021-07-22 00:00:00', '2021-09-23 00:00:00', '구편절판'),
 	(654, '610539728-3', '여행', 'Home Ing', 'Etheline', 'Jaxworks', 304, 14010, 'noimage.jpg', 'nunc donec quis orci eget orci vehicula condimentum curabitur in libero', '2020-10-02 00:00:00', '2021-09-23 00:00:00', '품절'),
 	(655, '504350639-3', '여행', 'Aerified', 'Letizia', 'Jabberstorm', 180, 17776, 'noimage.jpg', 'sed nisl nunc rhoncus dui vel sem sed sagittis nam', '2020-12-10 00:00:00', '2021-09-23 00:00:00', '절판'),
-	(656, '504518215-3', '만화', 'Trippledex', 'Bobinette', 'Oozz', 952, 9475, 'noimage.jpg', 'urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam', '2021-09-22 00:00:00', '2021-09-23 00:00:00', '절판'),
+	(656, '504518215-3', '만화', 'Trippledex', 'Bobinette', 'Oozz', 952, 9500, 'noimage.jpg', 'urna pretium nisl ut volutpat sapien arcu sed augue aliquam erat volutpat in congue etiam', '2021-09-22 00:00:00', '2021-09-23 00:00:00', '절판'),
 	(657, '754860427-0', '만화', 'Sonair', 'Ralf', 'Wikizz', 254, 29375, 'noimage.jpg', 'condimentum neque sapien placerat ante nulla justo aliquam quis turpis eget', '2020-12-18 00:00:00', '2021-09-23 00:00:00', '판매중'),
 	(658, '995217714-3', '여행', 'Bigtax', 'Courtney', 'Midel', 526, 14723, 'noimage.jpg', 'dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus', '2021-06-22 00:00:00', '2021-09-23 00:00:00', '구편절판'),
 	(659, '910228401-4', '경제', 'Zathin', 'Amii', 'Topdrive', 476, 5115, 'noimage.jpg', 'fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam', '2021-05-06 00:00:00', '2021-09-23 00:00:00', '판매중'),
@@ -868,7 +868,6 @@ INSERT INTO `ebook` (`ebook_no`, `ebook_isbn`, `category_name`, `ebook_title`, `
 	(802, '031883232-1', '만화', 'Tin', 'Mattie', 'Linktype', 537, 27810, 'noimage.jpg', 'a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla', '2020-10-14 00:00:00', '2021-09-23 00:00:00', '구편절판'),
 	(803, '449529705-8', '외국어', 'Regrant', 'Daile', 'Yakidoo', 529, 10536, 'noimage.jpg', 'iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam', '2021-02-25 00:00:00', '2021-09-23 00:00:00', '판매중'),
 	(804, '667259080-3', '만화', 'Job', 'Michale', 'Zazio', 133, 6827, 'noimage.jpg', 'sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu', '2021-05-10 00:00:00', '2021-09-23 00:00:00', '절판'),
-	(805, '467064143-3', '외국어', 'Zamit', 'Etienne', 'Vidoo', 851, 7777, 'noimage.jpg', 'luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum', '2021-09-19 00:00:00', '2021-09-23 00:00:00', '구편절판'),
 	(806, '849494739-7', '소설', 'Gembucket', 'Corenda', 'Eare', 839, 18896, 'noimage.jpg', 'convallis eget eleifend luctus ultricies eu nibh quisque id justo sit amet sapien dignissim vestibulum vestibulum ante ipsum primis', '2021-04-29 00:00:00', '2021-09-23 00:00:00', '품절'),
 	(807, '857953348-1', '외국어', 'Alpha', 'Mellicent', 'Trupe', 787, 27266, 'noimage.jpg', 'morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla', '2021-05-15 00:00:00', '2021-09-23 00:00:00', '품절'),
 	(808, '257802481-2', '여행', 'Y-find', 'Archambault', 'Roomm', 474, 22942, 'noimage.jpg', 'cras non velit nec nisi vulputate nonummy maecenas tincidunt lacus at velit', '2021-06-06 00:00:00', '2021-09-23 00:00:00', '판매중'),
@@ -1080,20 +1079,18 @@ CREATE TABLE IF NOT EXISTS `member` (
   `create_date` datetime NOT NULL,
   PRIMARY KEY (`member_no`),
   UNIQUE KEY `member_id` (`member_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=108 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 shop.member:~100 rows (대략적) 내보내기
+-- 테이블 데이터 shop.member:~101 rows (대략적) 내보내기
 DELETE FROM `member`;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
 INSERT INTO `member` (`member_no`, `member_id`, `member_pw`, `member_level`, `member_name`, `member_age`, `member_gender`, `update_date`, `create_date`) VALUES
 	(1, 'admin', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '관리자', 30, '남', '2021-09-14 16:46:47', '2021-09-14 16:46:47'),
-	(2, 'aa', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'master', 16, '남', '2021-09-14 16:52:07', '2021-09-14 16:52:07'),
 	(3, 'bb', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'masterB', 25, '여', '2021-09-14 16:58:30', '2021-09-14 16:58:30'),
 	(4, 'cc', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'masterC', 33, '남', '2021-09-14 17:15:50', '2021-09-14 17:15:50'),
-	(5, 'goodee', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, '구디', 10, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
+	(5, 'goodee', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '구디', 10, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(6, '722265453-4', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Osborne', 30, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(7, '486768742-1', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Claribel', 43, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
-	(8, 'admin4', '1234', 1, '관리자4', 15, '남', '2021-09-24 13:49:45', '2021-09-24 13:49:46'),
 	(9, '926991441-0', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Cayla', 69, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(10, '316036700-2', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Calv', 80, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(11, '041391929-3', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Katharina', 69, '여', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
@@ -1185,8 +1182,41 @@ INSERT INTO `member` (`member_no`, `member_id`, `member_pw`, `member_level`, `me
 	(103, '460222019-3', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Shandee', 55, '남', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(104, '988742243-6', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'Gene', 55, '남', '2021-09-15 00:00:00', '2021-09-15 00:00:00'),
 	(106, 'admin2', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '관리자2', 1555, '남', '2021-09-16 16:07:53', '2021-09-16 16:07:53'),
-	(107, 'admin3', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '관리자3', 18, '남', '2021-09-17 17:20:25', '2021-09-17 17:20:25');
+	(107, 'admin3', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '관리자3', 18, '남', '2021-09-17 17:20:25', '2021-09-17 17:20:25'),
+	(108, 'asd', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, 'asd', 13, '남', '2021-09-27 14:44:52', '2021-09-27 14:44:52'),
+	(109, 'ads', '*A4B6157319038724E3560894F7F932C8886EBFCF', 1, '쩝쩝이', 15, '남', '2021-09-28 17:38:37', '2021-09-28 17:38:37'),
+	(110, 'pig', '*A4B6157319038724E3560894F7F932C8886EBFCF', 0, '돼지', 18, '여', '2021-09-30 16:34:39', '2021-09-30 16:34:39');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
+
+-- 테이블 shop.notice 구조 내보내기
+DROP TABLE IF EXISTS `notice`;
+CREATE TABLE IF NOT EXISTS `notice` (
+  `notice_no` int(11) NOT NULL AUTO_INCREMENT,
+  `notice_title` varchar(50) NOT NULL,
+  `notice_content` text NOT NULL,
+  `member_no` int(11) NOT NULL,
+  `member_name` varchar(50) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`notice_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 shop.notice:~11 rows (대략적) 내보내기
+DELETE FROM `notice`;
+/*!40000 ALTER TABLE `notice` DISABLE KEYS */;
+INSERT INTO `notice` (`notice_no`, `notice_title`, `notice_content`, `member_no`, `member_name`, `create_date`, `update_date`) VALUES
+	(1, '수정', '안녕하세요', 1, '관리자', '2021-09-29 11:51:13', '2021-09-29 14:17:22'),
+	(3, '공지합니다', '공지', 1, '관리자', '2021-09-29 14:21:31', '2021-09-29 14:21:31'),
+	(4, '공지!', '123', 1, '관리자', '2021-09-30 10:26:52', '2021-09-30 10:26:53'),
+	(5, '공지5', '123', 1, '관리자', '2021-09-30 10:27:07', '2021-09-30 10:27:07'),
+	(6, '중요공지', 'ㅎㅇ', 1, '관리자', '2021-09-30 10:27:25', '2021-09-30 10:27:26'),
+	(7, '신입회원분들께', 'ㅎㅇ', 1, '관리자', '2021-09-30 10:27:45', '2021-09-30 10:27:46'),
+	(8, '읽어주세요', 'ㅎㅇㅎㅇㅎㅇ', 1, '관리자', '2021-09-30 10:28:05', '2021-09-30 10:27:51'),
+	(9, '환영인사', 'ㅎㅇㅎㅇ', 1, '관리자', '2021-09-30 10:28:41', '2021-09-30 10:28:43'),
+	(10, '10번공지', 'ㅎㅇ', 1, '관리자', '2021-09-30 10:28:58', '2021-09-30 10:28:59'),
+	(11, '힘들다', 'ㅎㅇ', 1, '관리자', '2021-09-30 10:29:17', '2021-09-30 10:29:17'),
+	(12, '화이팅', '화이팅', 1, '관리자', '2021-09-30 10:39:03', '2021-09-30 10:39:03');
+/*!40000 ALTER TABLE `notice` ENABLE KEYS */;
 
 -- 테이블 shop.orders 구조 내보내기
 DROP TABLE IF EXISTS `orders`;
@@ -1200,9 +1230,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`order_no`),
   KEY `FK_orders_member` (`member_no`),
   KEY `FK_orders_ebook` (`ebook_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb3;
 
--- 테이블 데이터 shop.orders:~51 rows (대략적) 내보내기
+-- 테이블 데이터 shop.orders:~62 rows (대략적) 내보내기
 DELETE FROM `orders`;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
 INSERT INTO `orders` (`order_no`, `ebook_no`, `member_no`, `order_price`, `create_date`, `update_date`) VALUES
@@ -1256,8 +1286,97 @@ INSERT INTO `orders` (`order_no`, `ebook_no`, `member_no`, `order_price`, `creat
 	(48, 6, 6, 1000, '2021-09-24 00:00:00', '2021-09-24 00:00:00'),
 	(49, 9, 5, 1000, '2021-09-24 00:00:00', '2021-09-24 00:00:00'),
 	(50, 6, 6, 1000, '2021-09-24 00:00:00', '2021-09-24 00:00:00'),
-	(51, 4, 5, 1000, '2021-09-24 00:00:00', '2021-09-24 00:00:00');
+	(51, 4, 5, 1000, '2021-09-24 00:00:00', '2021-09-24 00:00:00'),
+	(52, 8, 5, 22033, '2021-09-28 15:25:15', '2021-09-28 15:25:15'),
+	(53, 2, 10, 19000, '2021-09-28 15:56:22', '2021-09-28 15:56:23'),
+	(54, 2, 13, 19900, '2021-09-28 15:56:36', '2021-09-28 15:56:37'),
+	(55, 2, 1, 9270, '2021-09-28 16:20:24', '2021-09-28 16:20:24'),
+	(56, 8, 1, 22033, '2021-09-28 16:40:18', '2021-09-28 16:40:18'),
+	(57, 8, 1, 22033, '2021-09-30 16:32:49', '2021-09-30 16:32:49'),
+	(58, 8, 1, 22033, '2021-10-06 16:59:50', '2021-10-06 16:59:50'),
+	(59, 144, 1, 19153, '2021-10-06 16:59:56', '2021-10-06 16:59:56'),
+	(60, 242, 1, 8375, '2021-10-06 17:00:01', '2021-10-06 17:00:01'),
+	(61, 284, 1, 22294, '2021-10-06 18:03:33', '2021-10-06 18:03:33'),
+	(62, 8, 1, 22033, '2021-10-07 17:36:59', '2021-10-07 17:36:59'),
+	(63, 485, 1, 9931, '2021-10-08 16:51:11', '2021-10-08 16:51:11');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
+
+-- 테이블 shop.order_comment 구조 내보내기
+DROP TABLE IF EXISTS `order_comment`;
+CREATE TABLE IF NOT EXISTS `order_comment` (
+  `order_no` int(11) NOT NULL,
+  `ebook_no` int(11) NOT NULL,
+  `order_score` int(11) NOT NULL,
+  `order_comment_content` text NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`order_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 shop.order_comment:~8 rows (대략적) 내보내기
+DELETE FROM `order_comment`;
+/*!40000 ALTER TABLE `order_comment` DISABLE KEYS */;
+INSERT INTO `order_comment` (`order_no`, `ebook_no`, `order_score`, `order_comment_content`, `create_date`, `update_date`) VALUES
+	(8, 1, 8, '별로예요', '2021-09-27 18:37:09', '2021-09-27 18:37:09'),
+	(22, 1, 10, '핵꿀잼', '2021-09-28 13:38:46', '2021-09-28 13:38:47'),
+	(33, 2, 8, '쓰레기임', '2021-09-28 15:58:16', '2021-09-28 15:58:17'),
+	(41, 1, 2, '이게뭐냐 발로썼냐', '2021-09-28 13:39:06', '2021-09-28 13:39:06'),
+	(49, 9, 6, '그럭저럭', '2021-09-27 18:41:44', '2021-09-27 18:41:44'),
+	(55, 2, 9, '후기믿지마셈', '2021-09-28 16:20:35', '2021-09-28 16:20:35'),
+	(60, 242, 10, '만점', '2021-10-06 17:10:41', '2021-10-06 17:10:41'),
+	(61, 284, 8, 'b', '2021-10-08 16:51:33', '2021-10-08 16:51:33'),
+	(62, 8, 3, 'd', '2021-10-08 16:51:25', '2021-10-08 16:51:25'),
+	(63, 485, 9, 'a', '2021-10-08 16:51:20', '2021-10-08 16:51:20'),
+	(101, 2, 9, '읽을만하다', '2021-09-28 15:56:58', '2021-09-28 15:56:58');
+/*!40000 ALTER TABLE `order_comment` ENABLE KEYS */;
+
+-- 테이블 shop.qna 구조 내보내기
+DROP TABLE IF EXISTS `qna`;
+CREATE TABLE IF NOT EXISTS `qna` (
+  `qna_no` int(11) NOT NULL AUTO_INCREMENT,
+  `qna_category` enum('상품','회원','기타') NOT NULL,
+  `qna_title` varchar(500) NOT NULL,
+  `qna_content` text NOT NULL,
+  `qna_secret` enum('Y','N') NOT NULL,
+  `member_no` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`qna_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 shop.qna:~6 rows (대략적) 내보내기
+DELETE FROM `qna`;
+/*!40000 ALTER TABLE `qna` DISABLE KEYS */;
+INSERT INTO `qna` (`qna_no`, `qna_category`, `qna_title`, `qna_content`, `qna_secret`, `member_no`, `create_date`, `update_date`) VALUES
+	(1, '상품', 'q1', 'q1', 'Y', 108, '2021-09-29 10:37:21', '2021-09-29 10:37:23'),
+	(3, '상품', 'q3', 'q3', 'N', 109, '2021-09-29 10:38:16', '2021-09-29 10:38:16'),
+	(4, '회원', 'q4', 'q4', 'N', 109, '2021-09-29 10:38:43', '2021-09-29 10:38:44'),
+	(5, '회원', '회원관련 문의', '문의', 'Y', 5, '2021-09-29 15:44:33', '2021-09-29 15:44:33'),
+	(6, '기타', '테스트', '테스트입니다', 'N', 1, '2021-09-30 11:39:42', '2021-09-30 11:39:42'),
+	(7, '회원', '문의드립니다.', 'ㅇ', 'Y', 1, '2021-09-30 17:17:41', '2021-09-30 17:17:41');
+/*!40000 ALTER TABLE `qna` ENABLE KEYS */;
+
+-- 테이블 shop.qna_comment 구조 내보내기
+DROP TABLE IF EXISTS `qna_comment`;
+CREATE TABLE IF NOT EXISTS `qna_comment` (
+  `qna_no` int(11) NOT NULL,
+  `qna_comment_content` text NOT NULL,
+  `member_no` int(11) NOT NULL,
+  `create_date` datetime NOT NULL,
+  `update_date` datetime NOT NULL,
+  PRIMARY KEY (`qna_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- 테이블 데이터 shop.qna_comment:~5 rows (대략적) 내보내기
+DELETE FROM `qna_comment`;
+/*!40000 ALTER TABLE `qna_comment` DISABLE KEYS */;
+INSERT INTO `qna_comment` (`qna_no`, `qna_comment_content`, `member_no`, `create_date`, `update_date`) VALUES
+	(1, 'a1', 1, '2021-09-29 10:39:57', '2021-09-29 10:39:58'),
+	(2, '넹', 108, '2021-09-29 18:06:02', '2021-09-29 18:06:02'),
+	(3, 'a3', 1, '2021-09-29 10:40:14', '2021-09-29 10:40:14'),
+	(4, '감사합니다 고객님', 109, '2021-10-06 18:05:56', '2021-10-06 18:05:56'),
+	(5, '네', 5, '2021-09-29 17:04:25', '2021-09-29 17:04:25');
+/*!40000 ALTER TABLE `qna_comment` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
