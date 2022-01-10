@@ -69,7 +69,7 @@
 							<!-- QnA 제목. 클릭 시 QnA 내용 상세보기 -->
 			<%
 					if(q.getQnaSecret().equals("Y")) {
-						if(q.getMemberNo() == loginMember.getMemberNo()) {
+						if(loginMember != null && q.getMemberNo() == loginMember.getMemberNo()) {
 			%>
 							<td><img src="<%=request.getContextPath() %>/image/secret.png" width="13" height="13"> <a href="<%=request.getContextPath() %>/selectQnaOne.jsp?qnaNo=<%=q.getQnaNo() %>"><%=q.getQnaTitle() %></a></td>
 			<%							

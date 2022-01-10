@@ -88,7 +88,7 @@
 				<td>
 					<div>
 						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
-						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>.jpg" width="200" height="200">
 						</a>
 					</div>
 					<div>
@@ -117,7 +117,7 @@
 				<td>
 					<div>
 						<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
-						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+						<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>.jpg" width="200" height="200">
 						</a>
 					</div>
 					<div>
@@ -147,7 +147,7 @@
 					<td>
 						<div>
 							<a href="<%=request.getContextPath() %>/selectEbookOne.jsp?ebookNo=<%=e.getEbookNo() %>">
-							<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>" width="200" height="200">
+							<img src="<%=request.getContextPath() %>/image/<%=e.getEbookImg() %>.jpg" width="200" height="200">
 							</a>
 						</div>
 						<div>

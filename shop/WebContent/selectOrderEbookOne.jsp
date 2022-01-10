@@ -48,7 +48,7 @@
 			<tbody>
 				<tr>
 					<td>
-						<img src="<%=request.getContextPath() %>/image/<%=oem.getEbook().getEbookImg() %>">						
+						<img src="<%=request.getContextPath() %>/image/<%=oem.getEbook().getEbookImg() %>.jpg">						
 					</td>
 				</tr>
 				<tr>

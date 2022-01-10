@@ -70,7 +70,7 @@
 					if(q.getQnaSecret().equals("Y")) {
 			%>
 						<!-- 비밀 글은 자물쇠 이미지 출력 -->
-						<td><img src="<%=request.getContextPath() %>/image/secret.png" width="13" height="13"><a href="<%=request.getContextPath() %>/admin/selectAdminQnaOne.jsp?qnaNo=<%=q.getQnaNo() %>"><%=q.getQnaTitle() %></td>						
+						<td><img src="<%=request.getContextPath() %>/image/secret.png" width="13" height="13"><a href="<%=request.getContextPath() %>/admin/selectAdminQnaOne.jsp?qnaNo=<%=q.getQnaNo() %>"><%=q.getQnaTitle() %></a></td>						
 			<%
 					} else if(q.getQnaSecret().equals("N")) {
 			%>
@@ -85,6 +85,7 @@
 				}		
 			%>					
 			</tbody>	
-		</table>				
+		</table>	
+	</div>			
 	</body>
 </html>
