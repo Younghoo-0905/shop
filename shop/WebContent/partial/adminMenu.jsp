@@ -10,7 +10,6 @@
 		<li><a href="<%=request.getContextPath() %>/admin/selectEbookList.jsp">[전자책 관리]</a></li>
 			<!-- 주문 관리 : 목록,  -->
 		<li><a href="<%=request.getContextPath() %>/admin/selectOrderList.jsp">[주문 관리]</a></li>
-		<li><a href="<%=request.getContextPath() %>/admin/adminIndex.jsp">[상품평 관리] (미완성)</a></li>
 		<li><a href="<%=request.getContextPath() %>/admin/selectAdminNoticeList.jsp">[공지 게시판 관리]</a></li>
 		<li><a href="<%=request.getContextPath() %>/admin/selectAdminQnaList.jsp">[QnA게시판 관리]</a></li>
 	</ul>
