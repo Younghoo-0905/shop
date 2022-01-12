@@ -31,13 +31,15 @@ public class OrderDao {
 				+ "e.ebook_title ebookTitle, "
 				+ "m.member_no memberNo, "
 				+ "m.member_id memberId "
-				+ "FROM orders o INNER JOIN ebook e INNER JOIN member m "
-				+ "ON o.ebook_no = e.ebook_no AND o.member_no = m.member_no "
+				+ "FROM orders o "
+				+ "INNER JOIN ebook e INNER JOIN member m "
+				+ "ON o.ebook_no = e.ebook_no AND "
+				+ "o.member_no = m.member_no "
 				+ "ORDER BY o.create_date DESC LIMIT ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, beginRow);
 		stmt.setInt(2, rowPerPage);
-		//	System.out.println("[selectOrderList -> ]" + stmt);
+		System.out.println("[selectOrderList -> ]" + stmt);
 		ResultSet rs = stmt.executeQuery();
 		while(rs.next()) {
 			OrderEbookMember oem = new OrderEbookMember();

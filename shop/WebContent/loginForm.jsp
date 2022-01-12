@@ -35,11 +35,11 @@
 			<table class="table table-bordered text-center table-layout:fixed" style="width:500px" align="center">
 				<tr>
 					<td>ID : </td>
-					<td><div><input id="memberId" type="text" name="memberId" placeholder="관리자 ID : 12"></div></td>
+					<td><div><input id="memberId" type="text" name="memberId" value="admin2"></div></td>
 				</tr>	
 				<tr>
 					<td>비밀번호 : </td>
-					<td><input id="memberPw" type="password" name="memberPw" placeholder="관리자 PW : 12"></td>					
+					<td><input id="memberPw" type="password" name="memberPw" value="12"></td>					
 				</tr>								
 			</table>
 			

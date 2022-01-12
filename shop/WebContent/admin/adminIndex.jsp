@@ -37,8 +37,6 @@
 		</div>
 		<!--  adminMenu include -->
 		
-		<h4 class="d-flex justify-content-center"><span class="text-primary font-weight-bold"><%=loginMember.getMemberName() %> </span> 님 반갑습니다.</h4>
-				
 		<div class="jumbotron text-center">	  
 			<h1>관리자 페이지</h1>
 		</div>		
